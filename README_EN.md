@@ -21,7 +21,7 @@ A preconfigured [REAPER](https://www.reaper.fm) folder with toolbar, scripts, [V
 
 1. **Copy the folder** `ICST_Ambi_Reaper` to a fixed location (external SSD or `~/Music`). Spaces in the path are fine.
 2. **Check REAPER.app.** If `REAPER.app` is not in the folder, download REAPER for macOS from [reaper.fm](https://www.reaper.fm) (same major version) and put it **inside `ICST_Ambi_Reaper`**, next to `reaper.ini`. This is what makes REAPER run portably from this folder.
-3. **Setup script.** Run `run-me-before-install.command` with right-click › **Open** (a double click is blocked after a download). It removes the macOS quarantine flag and points the plug-in path in `reaper.ini` to the current location. Run it again after every move of the folder.
+3. **Setup script.** Run `run-me-before-install.command` with right-click › **Open** (a double click is blocked after a download). It removes the macOS quarantine flag and points the plug-in path in `reaper.ini` to the current location. From then on, preferably always open REAPER with `ICST_Ambi_Reaper starten.command`: it points the plug-in path to the current location on every start (also on external drives with a different name) and starts `REAPER.app` from the folder. On startup REAPER additionally checks the path and the plug-in list and tells you what to do.
 4. **Start REAPER** using the `REAPER.app` **from this folder**. If macOS warns: right-click the app › **Open**. Check: *Options › Show REAPER resource path in explorer/finder* must open `ICST_Ambi_Reaper`.
 5. **Scan plug-ins.** *Options › Preferences › Plug-ins › VST*: the path ends in `Effects/VST3`; click **Re-scan** (if needed *Clear cache and re-scan*).
 6. **Show the toolbar.** *View › Toolbars › Floating toolbar 1* (toolbar *ICST_Ambi_Automation*).
@@ -48,7 +48,7 @@ The folder is a macOS bundle: the plug-ins in `Effects/VST3`, the files in `User
    - `Data\toolbar_icons`
    - `Docs`, `OSC`, `ICST_Player_Presets`
    - `reaper-menu.ini` and `reaper-kb.ini` (toolbar and actions; harmless in a fresh portable install, in an existing install they replace your own toolbars)
-   Do not copy: `Effects\VST3`, `UserPlugins`, `Animator`, `REAPER.app`, `run-me-before-install.command`, the other `.ini` files.
+   Do not copy: `Effects\VST3`, `UserPlugins`, `Animator`, `REAPER.app`, `run-me-before-install.command`, `ICST_Ambi_Reaper starten.command`, the other `.ini` files.
 4. **Install the plug-ins** (into `C:\Program Files\Common Files\VST3`, which REAPER scans automatically):
    - *AmbiEncoder*, *AmbiEncoder_64*, *AmbiDecoder*: [ICST Ambisonics Plugins](https://ambisonics.ch/icst-ambisonics-plugins/) ([ambisonics.ch](https://ambisonics.ch))
    - *IEM Plug-in Suite* incl. BinauralDecoder: [plugins.iem.at](https://plugins.iem.at)
@@ -62,7 +62,7 @@ The folder is a macOS bundle: the plug-ins in `Effects/VST3`, the files in `User
 
 | Problem | Solution |
 |---|---|
-| Plug-ins missing (macOS) | Run `run-me-before-install.command` again, start REAPER **from the folder**, *Re-scan* |
+| Plug-ins missing (macOS) | Quit REAPER and restart it with `ICST_Ambi_Reaper starten.command`; otherwise Preferences › Plug-ins › VST › *Re-scan* › *Clear cache and re-scan* |
 | Plug-in crashes or wrong version | Remove old copies in `/Library/Audio/Plug-Ins/VST3` or `~/Library/…`; copy the plug-in again and run `xattr -cr` / `codesign --force --deep --sign -` |
 | Toolbar empty | *Options › Customize menus/toolbars*, check *Floating toolbar 1*; `reaper-menu.ini` and `reaper-kb.ini` must be in the resource folder |
 | Script reports a missing function (`JS_…`, `BR_…`, `CF_…`) | Install SWS and js_ReaScriptAPI (Windows) or check `UserPlugins` (macOS) |
