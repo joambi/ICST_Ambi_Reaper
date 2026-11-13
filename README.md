@@ -11,7 +11,7 @@ Ein vorkonfigurierter [REAPER](https://www.reaper.fm)-Ordner mit Toolbar, Skript
 | Status | vollständig, so ausgeliefert | **Beta, noch nicht getestet**; Aufbau aus Teilen (siehe 3) |
 | Plug-ins im Ordner | ja (`Effects/VST3`, universal) | nein, Installer nötig |
 | REAPER-Erweiterungen ([SWS](https://www.sws-extension.org), [js_ReaScriptAPI](https://forum.cockos.com/showthread.php?t=212174), [ReaPack](https://reapack.com)) | im Ordner (`UserPlugins`, nur Apple Silicon) | selbst installieren |
-| Animator Choreographer (Button 13) | ja (`Animator/`) | ja (installierte App oder `Animator\Animator Choreographer.exe`) |
+| Animator Choreographer (Button 16) | ja (`Animator/`) | ja (installierte App oder `Animator\Animator Choreographer.exe`) |
 
 ## 2. Installation und Quick Start: macOS
 
@@ -56,7 +56,7 @@ Der Ordner ist ein macOS-Bundle: die Plug-ins in `Effects/VST3`, die Dateien in 
 5. **REAPER starten**, *Options › Preferences › Plug-ins › VST › Re-scan*, dann *View › Toolbars › Floating toolbar 1*.
 6. Weiter mit dem **Ersten Durchlauf** in Abschnitt 2.
 
-**Hinweise Windows:** Button 13 (*Animator öffnen*) startet die installierte Windows-Version der App (`AnimatorChoreographer-<Version>-Setup.exe`) oder `Animator\Animator Choreographer.exe` im REAPER-Ordner.
+**Hinweise Windows:** Button 16 (*Animator öffnen*) startet die installierte Windows-Version der App (`AnimatorChoreographer-<Version>-Setup.exe`) oder `Animator\Animator Choreographer.exe` im REAPER-Ordner.
 
 ## 4. Wenn etwas nicht geht
 
