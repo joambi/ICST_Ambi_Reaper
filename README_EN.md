@@ -9,7 +9,7 @@ A preconfigured [REAPER](https://www.reaper.fm) folder with toolbar, scripts, [V
 | | macOS | Windows |
 |---|---|---|
 | Status | complete, shipped as is | **beta, untested**; assembled from parts (see 3) |
-| Plug-ins in the folder | yes (`Effects/VST3`, universal; AmbiGran 16 Apple Silicon only) | no, installers needed |
+| Plug-ins in the folder | yes (`Effects/VST3`, universal) | no, installers needed |
 | REAPER extensions ([SWS](https://www.sws-extension.org), [js_ReaScriptAPI](https://forum.cockos.com/showthread.php?t=212174), [ReaPack](https://reapack.com)) | in the folder (`UserPlugins`, Apple Silicon only) | install yourself |
 | Animator Choreographer (button 13) | yes (`Animator/`) | yes (installed app or `Animator\Animator Choreographer.exe`) |
 
@@ -17,7 +17,7 @@ A preconfigured [REAPER](https://www.reaper.fm) folder with toolbar, scripts, [V
 
 **Download:** [GitHub Releases](https://github.com/joambi/ICST_Ambi_Reaper/releases) — `ICST_Ambi_Reaper_<version>_macOS.pkg` (installer to `/Applications/ICST_Ambi_Reaper`; copies an existing `/Applications/REAPER.app` into the folder and sets the plug-in path — then continue at step 4) or `…_macOS.zip` (portable, e.g. for an external SSD — steps 1–6). `…_scripts-only.zip` contains only the platform-neutral parts (Windows, section 3). **REAPER itself is not included for licensing reasons.** Unsigned PKG: right-click › Open (macOS 15: System Settings › Privacy & Security › *Open Anyway*).
 
-**Requirements:** macOS 12 or newer, Apple Silicon recommended (on Intel Macs AmbiGran 16 and the extensions in `UserPlugins` are missing), REAPER 7 (tested with 7.85). Optional for the Motion Map tools: Python 3 (`xcode-select --install` in Terminal).
+**Requirements:** macOS 12 or newer, Apple Silicon recommended (on Intel Macs the extensions in `UserPlugins` are missing), REAPER 7 (tested with 7.85). Optional for the Motion Map tools: Python 3 (`xcode-select --install` in Terminal).
 
 1. **Copy the folder** `ICST_Ambi_Reaper` to a fixed location (external SSD or `~/Music`). Spaces in the path are fine.
 2. **Check REAPER.app.** If `REAPER.app` is not in the folder, download REAPER for macOS from [reaper.fm](https://www.reaper.fm) (same major version) and put it **inside `ICST_Ambi_Reaper`**, next to `reaper.ini`. This is what makes REAPER run portably from this folder.
@@ -31,8 +31,8 @@ A preconfigured [REAPER](https://www.reaper.fm) folder with toolbar, scripts, [V
 ### First run (10 minutes)
 1. Add a new track with a mono audio file. Click **Encoder 64** (red-orange) on that track: AmbiEncoder_64 is inserted.
 2. Click **Decoder** (blue) for loudspeakers or **Binaural** (violet) for headphones.
-3. Optional: **HOA Reverb** (turquoise) for reverb.
-4. Click **Auto-Route**: the 16-channel sends sources › reverb › decoder/binaural are created.
+3. Optional: **HOA FX** for IEM effects.
+4. Click **Auto-Route**: the 16-channel sends sources › HOA FX › decoder/binaural are created.
 5. Play and move the source in the encoder. To write movements use **[Motion Map GUI](https://ambisonics.ch/icst-ambisonics-plugins/15_icst_ambi_motion_map/)** / **Spat Motion Automation** (chapter 6 of the manual).
 
 ## 3. Installation and quick start: Windows (beta, untested)
@@ -45,19 +45,18 @@ The folder is a macOS bundle: the plug-ins in `Effects/VST3`, the files in `User
 2. **Install extensions.** Install the *SWS Extension* ([sws-extension.org](https://www.sws-extension.org)) and *ReaPack* ([reapack.com](https://reapack.com)); in ReaPack *Browse packages* › install **js_ReaScriptAPI** (repository *ReaTeam Extensions*); restart REAPER.
 3. **Copy the ICST parts** from the macOS folder into the new Windows folder (overwrite existing files):
    - `Scripts\ICST` (all of it)
-   - `Data\toolbar_icons`, `Data\IRidesce`
+   - `Data\toolbar_icons`
    - `Docs`, `OSC`, `ICST_Player_Presets`
    - `reaper-menu.ini` and `reaper-kb.ini` (toolbar and actions; harmless in a fresh portable install, in an existing install they replace your own toolbars)
    Do not copy: `Effects\VST3`, `UserPlugins`, `Animator`, `REAPER.app`, `run-me-before-install.command`, the other `.ini` files.
 4. **Install the plug-ins** (into `C:\Program Files\Common Files\VST3`, which REAPER scans automatically):
-   - ICST packages *AmbiIRVerb*, *AmbiIRLayers*, *AmbiGran 16* (`…-Windows-Setup.exe`, beta; SmartScreen: *More info › Run anyway*)
    - *AmbiEncoder*, *AmbiEncoder_64*, *AmbiDecoder*: [ICST Ambisonics Plugins](https://ambisonics.ch/icst-ambisonics-plugins/) ([ambisonics.ch](https://ambisonics.ch))
    - *IEM Plug-in Suite* incl. BinauralDecoder: [plugins.iem.at](https://plugins.iem.at)
-   The scripts find plug-ins by name, e.g. `AmbiEncoder_64 (ICST)`, `AmbiIRVerb (Independent)`, `BinauralDecoder (IEM)`; REAPER must list them the same way on Windows.
+   The scripts find plug-ins by name, e.g. `AmbiEncoder_64 (ICST)`, `BinauralDecoder (IEM)`; REAPER must list them the same way on Windows.
 5. **Start REAPER**, *Options › Preferences › Plug-ins › VST › Re-scan*, then *View › Toolbars › Floating toolbar 1*.
 6. Continue with the **First run** in section 2.
 
-**Notes for Windows:** button 13 (*Open Animator*) starts the installed Windows version of the app (`AnimatorChoreographer-<version>-Setup.exe`) or `Animator\Animator Choreographer.exe` in the REAPER folder. The IR Library in AmbiIRVerb and AmbiIRLayers finds `Data\IRidesce` when REAPER is portable inside the folder (it searches upwards from the REAPER program); otherwise `%APPDATA%\REAPER\Data\IRidesce` or the shared folder `C:\ProgramData\ICST\IRidesce` that the ICST installers of AmbiIRVerb and AmbiIRLayers create (macOS: `/Library/Application Support/ICST/IRidesce`).
+**Notes for Windows:** button 13 (*Open Animator*) starts the installed Windows version of the app (`AnimatorChoreographer-<version>-Setup.exe`) or `Animator\Animator Choreographer.exe` in the REAPER folder.
 
 ## 4. Troubleshooting
 
@@ -68,12 +67,9 @@ The folder is a macOS bundle: the plug-ins in `Effects/VST3`, the files in `User
 | Toolbar empty | *Options › Customize menus/toolbars*, check *Floating toolbar 1*; `reaper-menu.ini` and `reaper-kb.ini` must be in the resource folder |
 | Script reports a missing function (`JS_…`, `BR_…`, `CF_…`) | Install SWS and js_ReaScriptAPI (Windows) or check `UserPlugins` (macOS) |
 | Motion Map: “python3 not found” | Install Python 3 (see requirements) |
-| Auto-Route does not find a track | The track needs a recognizable plug-in or “Player” in its name (chapter 7 of the manual) |
+| Auto-Route does not find a track | The track needs a recognizable plug-in or “Player” in its name (chapter 4 of the manual) |
 
-## Credits
-
-AmbiIRVerb (after IRidesce) is based on *IRidesce* by [Eli Stine, ES MediaWorks](https://elistine.com) (Sonotopes I – Crystal Wave Series). Implemented as a [JUCE](https://juce.com) VST3 in collaboration with the [ICST, Institute for Computer Music and Sound Technology, ZHdK](https://www.zhdk.ch/en/research/icst) ([ambisonics.ch](https://ambisonics.ch)). Code and the impulse responses in `Data/IRidesce` are used and distributed with the permission of ES MediaWorks.
+The binaural script (`Ambi_Create_Binaural_dearVR.lua`) uses dearVR AMBI MICRO only if dearVR is installed; otherwise it uses the IEM BinauralDecoder.
 
 VST is a trademark of Steinberg Media Technologies GmbH. REAPER is a product of Cockos Incorporated.
 
-**Note for YSFX:** the standard YSFX does not search folders recursively. If you also use the IR library with the JSFX *IRidesce* under YSFX, put the impulse responses flat (no sub-folders) into `Data/IRidesce`. The VST3 plug-ins AmbiIRVerb and AmbiIRLayers read the sub-folders (*Creative*, *Gear*, *Spaces*) regardless. Licence notice: `Data/IRidesce/LICENSE-IRidesce.txt`.

@@ -9,7 +9,6 @@ Die ICST-eigenen Inhalte dieses Repositorys stehen unter GPL-3.0-or-later (`LICE
 | Plug-in | Autor | Lizenz | Quelle |
 |---|---|---|---|
 | AmbiEncoder_1ch, AmbiEncoder_64ch, AmbiDecoder_64ch (ICST Core) | ICST, ZHdK | GPL-3.0 | <https://github.com/schweizerweb/icst-ambisonics-plugins> |
-| AmbiIRVerb, AmbiIRLayers, AmbiGran 16 (ICST Extended, Beta; AmbiGran = Port des BBDMI-Faust-Granulators) | ICST, ZHdK | Lizenz noch offen — Binaries unveraendert weitergegeben | <https://github.com/joambi/ICST-AmbiPlugins> |
 | BinauralDecoder, SceneRotator, MultiEQ, ToolBox, DualDelay, FdnReverb, OmniCompressor, DirectionalCompressor, MultiBandCompressor, EnergyVisualizer, GranularEncoder | IEM, Kunstuniversität Graz | GPL-3.0 — Binaries unverändert weitergegeben, Quellcode öffentlich | <https://plugins.iem.at> · <https://git.iem.at/audioplugins/IEMPluginSuite> |
 
 Lizenztext GPL-3.0: <https://www.gnu.org/licenses/gpl-3.0.html>
@@ -30,7 +29,6 @@ Lizenztext GPL-3.0: <https://www.gnu.org/licenses/gpl-3.0.html>
 
 | Komponente | Lizenz | Quelle |
 |---|---|---|
-| IRidesce (JSFX + Impulsantworten `Data/IRidesce`) | `Data/IRidesce/LICENSE-IRidesce.txt` | siehe Lizenzdatei |
 | ICST JSFX (`Effects/ICST`) | GPL-3.0-or-later (`LICENSE`) | dieses Repo |
 
 ## Weitere Software (nur Release)

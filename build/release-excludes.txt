@@ -4,6 +4,10 @@
 - /ColorThemes/Default_*.ReaperThemeZip
 - /Effects/VST3/dearVR*
 - /reaper-install-rev.txt
+# Skripte fuer nicht mitgelieferte Plug-ins
+- /Scripts/ICST/Ambi/Ambi_Create_HOA_Reverb.lua
+- /Scripts/ICST/Ambi/Ambi_Create_AmbiGran16.lua
+
 # Repo-Infrastruktur
 - /.git
 - /.github
@@ -17,11 +21,8 @@
 # REAPER-Stock (legt REAPER selbst an)
 - /Scripts/Cockos
 + /Effects/ICST
-+ /Effects/IRidesce
-+ /Effects/IRidesce.jsfx
 + /Effects/VST3
 - /Effects/*
-+ /Data/IRidesce
 + /Data/toolbar_icons
 - /Data/*
 + /Data/toolbar_icons/icst_*

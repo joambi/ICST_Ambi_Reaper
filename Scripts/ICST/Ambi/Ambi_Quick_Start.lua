@@ -24,7 +24,7 @@ local function send_mono(src, dst, ch)
 end
 
 -- Dialog (Werte werden gemerkt)
-local defaults = A.get("qs_last", "4,n,j,j,j")
+local defaults = A.get("qs_last", "4,n,n,j,j")
 local ok, input = reaper.GetUserInputs("ICST Quick-Start", 5,
   "Mono-Quellen (0-64):,HOA_FX-Spur (j/n):,HOA_Reverb (j/n):,Decoder (j/n):,Binaural (j/n):,extrawidth=40", defaults)
 if not ok then return end
