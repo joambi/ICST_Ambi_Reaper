@@ -56,7 +56,7 @@ Der Ordner ist ein macOS-Bundle: die Plug-ins in `Effects/VST3`, die Dateien in 
 5. **REAPER starten**, *Options › Preferences › Plug-ins › VST › Re-scan*, dann *View › Toolbars › Floating toolbar 1*.
 6. Weiter mit dem **Ersten Durchlauf** in Abschnitt 2.
 
-**Hinweise Windows:** Button 16 (*Animator öffnen*) startet die installierte Windows-Version der App (`AnimatorChoreographer-<Version>-Setup.exe`) oder `Animator\Animator Choreographer.exe` im REAPER-Ordner.
+**Hinweise Windows:** Button 16 (*Animator öffnen*) startet die installierte Windows-Version der App (`Animator-Choreographer-<Version>-Windows-Setup.exe`) oder `Animator\Animator Choreographer.exe` im REAPER-Ordner.
 
 ## 4. Wenn etwas nicht geht
 
