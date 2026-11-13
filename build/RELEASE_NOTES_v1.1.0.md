@@ -11,6 +11,7 @@ Portabler REAPER-Ordner für ICST Ambisonics und den Animator Choreographer. Die
 - Animator Choreographer 0.1.0 (Evaluationsbeta, [Release](https://github.com/joambi/animator-choreographer/releases/tag/v0.1.0)) liegt im Ordner `Animator/`; Toolbar-Button 16 startet die App.
 - Doku und README: Toolbar mit 21 Buttons, macOS-Hinweis für unsignierte Dateien (*Dennoch öffnen*), Windows-Installer-Name des Animator Choreographer.
 - PKG: Die mitgelieferte App wird immer in den Ordner installiert, auch wenn eine gleichnamige App an anderer Stelle liegt.
+- `…_scripts-only.zip` enthält jetzt die Animator-Skripte (`Scripts/ICST/Animator`, Buttons 16–20); in v1.0.0 fehlten sie dort.
 
 **Downloads**
 - `ICST_Ambi_Reaper_1.1.0_macOS.pkg`: Installer nach `/Applications/ICST_Ambi_Reaper` (macOS 12+, Apple Silicon empfohlen)
@@ -40,6 +41,7 @@ Portable REAPER folder for ICST Ambisonics and the Animator Choreographer. This 
 - Animator Choreographer 0.1.0 (evaluation beta, [release](https://github.com/joambi/animator-choreographer/releases/tag/v0.1.0)) is in the `Animator/` folder; toolbar button 16 starts the app.
 - Docs and README: toolbar with 21 buttons, macOS note for unsigned files (*Open Anyway*), Windows installer name of the Animator Choreographer.
 - PKG: the bundled app is always installed into the folder, even if an app with the same name exists elsewhere.
+- `…_scripts-only.zip` now contains the Animator scripts (`Scripts/ICST/Animator`, buttons 16–20); they were missing there in v1.0.0.
 
 **Downloads**
 - `ICST_Ambi_Reaper_1.1.0_macOS.pkg`: installer to `/Applications/ICST_Ambi_Reaper` (macOS 12+, Apple Silicon recommended)

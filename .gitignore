@@ -11,7 +11,7 @@ reaper-install-rev.txt
 # --- Binaries -> GitHub Releases, nicht ins Repo ---
 Effects/VST3/
 UserPlugins/
-Animator/
+/Animator/
 
 # --- REAPER-Stock-Inhalte (legt REAPER beim ersten Start selbst an) ---
 Scripts/Cockos/
