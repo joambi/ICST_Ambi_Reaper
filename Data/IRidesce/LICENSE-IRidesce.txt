@@ -1,0 +1,22 @@
+IRidesce / Sonotopes I - Crystal Wave Series
+Copyright (c) 2026 ES MediaWorks, LLC. All rights reserved.
+Author: Eli Stine, ES MediaWorks (https://elistine.com)
+
+This folder and the plug-ins AmbiIRVerb and AmbiIRLayers (ICST AmbiPlugins)
+contain material derived from the JSFX plug-in "IRidesce" (Sonotopes I - Crystal
+Wave Series, beta 10/6/2026): the algorithm and code of the VST3 port, the
+control names, the logo/signet, and the impulse responses in this folder
+(Creative, Gear, Spaces).
+
+Permission: ES MediaWorks, LLC (Eli Stine) has permitted, by e-mail of
+7 November 2026 to Johannes Schuett (ICST, ZHdK), the use and distribution of the
+code and the impulse responses and the integration of the ES MediaWorks logos and
+licence notices in the VST3 port, implemented in collaboration with the
+Institute for Computer Music and Sound Technology (ICST), Zurich University of
+the Arts (ZHdK), https://www.zhdk.ch/en/research/icst.
+
+All rights in IRidesce, its logos and the impulse responses remain with
+ES MediaWorks, LLC. This notice grants no further rights. Do not remove this file
+or the ES MediaWorks credit when redistributing.
+
+Third-party impulse-response sources, if any, stay under their own terms.

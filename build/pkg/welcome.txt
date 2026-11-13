@@ -1,0 +1,10 @@
+ICST Ambi Reaper — portabler REAPER-Ordner fuer Ambisonics (ICST / ZHdK)
+
+Dieses Paket installiert den Ordner /Applications/ICST_Ambi_Reaper mit Toolbar, Scripts, VST3-Plug-ins (ICST, IEM) und Dokumentation.
+
+REAPER selbst ist aus Lizenzgruenden nicht enthalten. Liegt REAPER.app bereits in /Applications, wird eine Kopie in den Ordner gelegt. Andernfalls REAPER von reaper.fm laden und REAPER.app in den Ordner ICST_Ambi_Reaper legen.
+
+Nach der Installation: REAPER.app AUS DEM ORDNER ICST_Ambi_Reaper starten (nur so arbeitet es portabel mit diesen Einstellungen).
+
+---
+This package installs /Applications/ICST_Ambi_Reaper (toolbar, scripts, VST3 plug-ins, docs). REAPER itself is not included; an existing /Applications/REAPER.app is copied into the folder, otherwise download it from reaper.fm and put REAPER.app into the folder. Always start REAPER.app FROM the ICST_Ambi_Reaper folder.

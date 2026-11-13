@@ -1,0 +1,47 @@
+name: CI / Release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+jobs:
+  lint:
+    name: Lua-Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq lua5.4
+      - name: luac -p auf allen Scripts
+        run: |
+          set -e
+          find Scripts Effects -name '*.lua' -print0 | xargs -0 -n1 luac5.4 -p
+          echo "Lua OK"
+
+  scripts-only-release:
+    name: Release-Entwurf (scripts-only)
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: scripts-only ZIP (git archive, .gitattributes export-ignore)
+        run: |
+          VER="${GITHUB_REF_NAME#v}"
+          git archive --format=zip --prefix=ICST_Ambi_Reaper/ -o "ICST_Ambi_Reaper_${VER}_scripts-only.zip" HEAD
+          ls -lh *.zip
+      - uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: ICST_Ambi_Reaper_*_scripts-only.zip
+          body: |
+            **Downloads**
+            - `…_macOS.pkg` — Installer nach `/Applications/ICST_Ambi_Reaper` (empfohlen)
+            - `…_macOS.zip` — portabler Ordner, z. B. fuer eine externe SSD
+            - `…_scripts-only.zip` — nur Scripts/Icons/Doku/Konfiguration (Windows, bestehende REAPER-Installation)
+
+            REAPER selbst ist nicht enthalten: https://www.reaper.fm/download.php
+            Die macOS-Dateien werden lokal mit `build/make_release.sh` gebaut und hier hochgeladen (siehe build/RELEASE.md).

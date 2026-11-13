@@ -1,0 +1,34 @@
+desc:ICST Kristall Controller
+// Control surface for JS_ICST_Kristall_Motion_Map.lua
+// The Lua GUI script reads these sliders each frame via TrackFX_GetParam.
+// Param index = slider number − 1  (slider1 → param 0, etc.)
+// Audio passes through unchanged.
+
+// ── Preset & Motion ───────────────────────────────────────────
+slider1:0<0,8,1{None,Cubic,Tetragonal,Hexagonal,RandomSwarm,Orthorhombic,Rhombohedral,Monoclinic,Triclinic}>Preset Trigger
+slider2:2<0.1,16,0.01>Rate (steps/sec or steps/beat)
+slider3:0<0,1,1{Steps/sec (absolute),Steps/beat (BPM sync)}>Rate Mode
+// ── Smoothing ─────────────────────────────────────────────────
+slider4:1<0,1,1{Off,On}>Smoothing
+slider5:0.08<0,2,0.001>Glide Time (sec)
+// ── Global Rotation (degrees) — map MIDI CCs here ────────────
+slider6:0<-180,180,0.1>Pitch (tilt fwd/bck)
+slider7:0<-180,180,0.1>Yaw   (spin L/R)
+slider8:0<-180,180,0.1>Roll  (rotate CW/CCW)
+// ── Global Position / Move / Zoom — automate via envelope ────
+slider9:0<-2,2,0.001>Offset X
+slider10:0<-2,2,0.001>Offset Y
+slider11:0<-2,2,0.001>Offset Z
+slider12:0<-2,2,0.001>Move X
+slider13:0<-2,2,0.001>Move Y
+slider14:0<-2,2,0.001>Move Z
+slider15:1<0,2,0.001>Zoom ×
+
+@slider
+// No processing — Lua reads params via TrackFX_GetParam
+
+@block
+
+@sample
+outl = inl;
+outr = inr;

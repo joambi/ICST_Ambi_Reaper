@@ -1,0 +1,77 @@
+# ===== ICST_Ambi_Reaper — was NICHT ins Git-Repo gehoert =====
+# Repo = Quellen (Scripts, Icons, Doku, JSFX, Konfiguration).
+# Binaries (VST3, UserPlugins, Animator.app) kommen als Release-ZIP/PKG (build/make_release.sh).
+
+# --- Nicht weitergebbar (Cockos / kommerziell) ---
+REAPER.app/
+ColorThemes/Default_*.ReaperThemeZip
+Effects/VST3/dearVR*
+reaper-install-rev.txt
+
+# --- Binaries -> GitHub Releases, nicht ins Repo ---
+Effects/VST3/
+UserPlugins/
+Animator/
+
+# --- REAPER-Stock-Inhalte (legt REAPER beim ersten Start selbst an) ---
+Scripts/Cockos/
+Effects/*
+!Effects/ICST/
+!Effects/IRidesce/
+!Effects/IRidesce.jsfx
+Data/*
+!Data/IRidesce/
+!Data/toolbar_icons/
+Data/toolbar_icons/*
+!Data/toolbar_icons/icst_*
+!Data/toolbar_icons/ambi_tb_*
+!Data/toolbar_icons/5.1.png
+!Data/toolbar_icons/7.1.4.png
+!Data/toolbar_icons/8ch-GRM.png
+!Data/toolbar_icons/Binaural.png
+Cursors/
+LangPack/
+MIDINoteNames/
+MouseMaps/
+ColorThemes/
+KeyMaps/*
+!KeyMaps/*ICST*
+
+# --- Persoenliche Einstellungen / Laufzeitzustand (enthalten lokale Pfade) ---
+ReaImGui/
+GUtilities/
+presets/
+reaper.ini
+reaper.ini.*
+reaper-wndpos.ini
+reaper-recentfx.ini
+reaper-extstate.ini
+reaper-reginfo2.ini
+reaper-midihw.ini
+reaper-vstplugins*.ini
+reaper-auplugins*.ini
+reaper-jsfx.ini
+reaper-fxtags.ini
+S&M.ini
+BR.ini
+sws-autocoloricon.ini
+REAPER Media/
+Exports/
+MetadataCaches/
+ReaPack/cache/
+ReaPack/registry.db
+Scripts/ICST/_audit/__startup_*
+Scripts/ICST/_audit/*_log*.txt
+Scripts/ICST/_audit/route_check.txt
+Scripts/ICST_AMBI/
+Scripts/_writetest/
+
+# --- Muell ---
+*.bak*
+*.tmp
+.DS_Store
+._*
+
+# --- Aufraeum-Ablage (lokal) ---
+_to_delete/
+_bundle_build/

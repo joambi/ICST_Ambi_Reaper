@@ -1,0 +1,16 @@
+# Nicht ins scripts-only-Archiv (git archive)
+build/ export-ignore
+.github/ export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
+run-me-before-install.command export-ignore
+make_zip.sh export-ignore
+# Zeilenenden
+*.lua  text eol=lf
+*.jsfx text eol=lf
+*.ini  text eol=lf
+*.md   text eol=lf
+*.sh   text eol=lf
+*.command text eol=lf
+*.png binary
+*.wav binary

@@ -1,0 +1,32 @@
+#!/bin/sh
+# postinstall fuer ICST_Ambi_Reaper.pkg — $2 = Installationsort (/Applications/ICST_Ambi_Reaper)
+DEST="$2"
+CONSOLE_USER="$(/usr/bin/stat -f %Su /dev/console 2>/dev/null || echo root)"
+
+# REAPER.app wird aus Lizenzgruenden nicht mitgeliefert: vorhandene Installation in den portablen Ordner kopieren
+if [ ! -d "$DEST/REAPER.app" ] && [ -d /Applications/REAPER.app ]; then
+  /usr/bin/ditto /Applications/REAPER.app "$DEST/REAPER.app" || true
+fi
+
+# Plugin-Pfad in reaper.ini auf den Installationsort setzen (Quarantaene gibt es bei pkg-Installation nicht)
+( cd "$DEST" && /bin/sh ./run-me-before-install.command ) >/dev/null 2>&1 || true
+
+# Portables REAPER schreibt in seinen Ordner -> dem angemeldeten Benutzer uebergeben
+/usr/sbin/chown -R "$CONSOLE_USER" "$DEST" 2>/dev/null || true
+/bin/chmod -R u+rwX "$DEST" 2>/dev/null || true
+
+if [ ! -d "$DEST/REAPER.app" ]; then
+  /bin/cat > "$DEST/REAPER.app FEHLT - bitte lesen.txt" <<'TXT'
+REAPER ist aus Lizenzgruenden nicht Teil dieses Pakets.
+1. REAPER fuer macOS von https://www.reaper.fm/download.php laden.
+2. REAPER.app in DIESEN Ordner (ICST_Ambi_Reaper) legen, neben reaper.ini.
+3. run-me-before-install.command mit Rechtsklick > Oeffnen ausfuehren, dann REAPER.app aus diesem Ordner starten.
+
+REAPER is not part of this package for licensing reasons.
+1. Download REAPER for macOS from https://www.reaper.fm/download.php
+2. Put REAPER.app into THIS folder (ICST_Ambi_Reaper), next to reaper.ini.
+3. Right-click > Open run-me-before-install.command, then start REAPER.app from this folder.
+TXT
+  /usr/sbin/chown "$CONSOLE_USER" "$DEST/REAPER.app FEHLT - bitte lesen.txt" 2>/dev/null || true
+fi
+exit 0

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="2">
+  <title>ICST Ambi Reaper @VERSION@</title>
+  <welcome file="welcome.txt"/>
+  <license file="license.txt"/>
+  <options customize="never" require-scripts="true" hostArchitectures="arm64,x86_64" rootVolumeOnly="true"/>
+  <domains enable_localSystem="true"/>
+  <choices-outline>
+    <line choice="main"/>
+  </choices-outline>
+  <choice id="main" title="ICST Ambi Reaper" description="Portabler REAPER-Ordner mit ICST-Ambisonics-Werkzeugen">
+    <pkg-ref id="ch.zhdk.icst.ambi-reaper"/>
+  </choice>
+  <pkg-ref id="ch.zhdk.icst.ambi-reaper" version="@VERSION@" onConclusion="none">ICST_Ambi_Reaper-component.pkg</pkg-ref>
+</installer-gui-script>
