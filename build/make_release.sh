@@ -25,6 +25,7 @@ rsync -a --filter="merge $ROOT/build/release-excludes.txt" "$ROOT/" "$STAGE/"
 printf '[reaper]\nvstpath_arm64=x\nvstpath=x\n' > "$STAGE/reaper.ini"    # run-me-before-install setzt den Pfad
 echo "$VER" > "$STAGE/VERSION"
 chmod +x "$STAGE/run-me-before-install.command"
+chmod +x "$STAGE/ICST_Ambi_Reaper starten.command"
 if [ -d "$STAGE/REAPER.app" ] || find "$STAGE" -name 'dearVR*' | grep -q .; then
   echo "FEHLER: REAPER.app oder dearVR im Staging — Abbruch." >&2; exit 1
 fi
