@@ -39,7 +39,17 @@ if command -v pkgbuild >/dev/null 2>&1; then
   echo "== PKG"
   PKGDIR="$TMP/pkg"; mkdir -p "$PKGDIR/res"
   chmod +x "$ROOT/build/pkg/scripts/"*
-  pkgbuild --quiet --root "$STAGE" --identifier ch.zhdk.icst.ambi-reaper --version "$VER" \
+  # Mitgelieferte .app-Bundles (Animator) nicht relozierbar: sonst "aktualisiert" der Installer
+  # eine gleichnamige App an anderem Ort, statt sie in den Ordner zu legen.
+  PLIST="$PKGDIR/component.plist"
+  pkgbuild --quiet --analyze --root "$STAGE" "$PLIST"
+  i=0
+  while /usr/libexec/PlistBuddy -c "Print :$i" "$PLIST" >/dev/null 2>&1; do
+    /usr/libexec/PlistBuddy -c "Set :$i:BundleIsRelocatable false" "$PLIST"
+    i=$((i+1))
+  done
+  echo "   $i Bundle(s) nicht relozierbar"
+  pkgbuild --quiet --root "$STAGE" --component-plist "$PLIST" --identifier ch.zhdk.icst.ambi-reaper --version "$VER" \
     --install-location "/Applications/$NAME" --scripts "$ROOT/build/pkg/scripts" --ownership recommended \
     "$PKGDIR/${NAME}-component.pkg"
   sed "s/@VERSION@/$VER/g" "$ROOT/build/pkg/Distribution.xml" > "$PKGDIR/Distribution.xml"
@@ -50,7 +60,7 @@ if command -v pkgbuild >/dev/null 2>&1; then
   [ -n "${PKG_SIGN_IDENTITY:-}" ] && SIGN=(--sign "$PKG_SIGN_IDENTITY")
   productbuild --quiet --distribution "$PKGDIR/Distribution.xml" --resources "$PKGDIR/res" \
     --package-path "$PKGDIR" ${SIGN[@]+"${SIGN[@]}"} "$PKG"
-  [ -n "${PKG_SIGN_IDENTITY:-}" ] || echo "   (unsigniert — Empfaenger: Rechtsklick > Oeffnen bzw. Systemeinstellungen > Datenschutz & Sicherheit > Trotzdem oeffnen)"
+  [ -n "${PKG_SIGN_IDENTITY:-}" ] || echo "   (unsigniert — Empfaenger: Systemeinstellungen > Datenschutz & Sicherheit > Dennoch oeffnen; bis macOS 14 Ctrl-Klick > Oeffnen)"
 else
   echo "== PKG uebersprungen (pkgbuild nicht gefunden — nur auf macOS)"
 fi

@@ -37,7 +37,7 @@ A preconfigured [REAPER](https://www.reaper.fm) folder with toolbar, scripts, [V
 
 ## 3. Installation and quick start: Windows (beta, untested)
 
-The folder is a macOS bundle: the plug-ins in `Effects/VST3`, the files in `UserPlugins` and `Animator/` run on macOS only. On Windows only the platform-independent parts are taken over (scripts, icons, menu, docs, impulse responses) and the plug-ins are installed with installers. The scripts are mostly platform neutral (path and shell calls account for Windows); a full run on Windows is still pending.
+The folder is a macOS bundle: the plug-ins in `Effects/VST3`, the files in `UserPlugins` and `Animator/` run on macOS only. On Windows only the platform-independent parts are taken over (scripts, icons, menu, docs) and the plug-ins are installed with installers. The scripts are mostly platform neutral (path and shell calls account for Windows); a full run on Windows is still pending.
 
 **Requirements:** Windows 10/11 (64 bit), REAPER 7 (64 bit; only tested on macOS with 7.85), Python 3 from [python.org](https://www.python.org) (tick *Add python.exe to PATH*; only for Motion Map, [Motion Markers](https://ambisonics.ch/icst-ambisonics-plugins/14_icst_ambi_motion_markers/) and [Kristall Motion Map](https://ambisonics.ch/icst-ambisonics-plugins/18_kristall_motion_map/)).
 

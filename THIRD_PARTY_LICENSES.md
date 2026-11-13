@@ -33,6 +33,6 @@ Lizenztext GPL-3.0: <https://www.gnu.org/licenses/gpl-3.0.html>
 
 ## Weitere Software (nur Release)
 
-Animator Choreographer (`Animator/`): ICST, ZHdK.
+Animator Choreographer 0.1.0 (`Animator/`): Johannes Schütt, ICST, ZHdK — GPL-3.0 — <https://github.com/joambi/animator-choreographer> (Release-Build unverändert übernommen).
 
 Bitte Einträge mit „siehe Repo" vor einer öffentlichen Veröffentlichung einmal gegen die jeweilige Lizenzdatei prüfen.

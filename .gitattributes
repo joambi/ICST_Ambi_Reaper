@@ -4,6 +4,10 @@ build/ export-ignore
 .gitignore export-ignore
 .gitattributes export-ignore
 run-me-before-install.command export-ignore
+"ICST_Ambi_Reaper starten.command" export-ignore
+# Skript und Icon fuer nicht mitgeliefertes Plug-in
+Scripts/ICST/Ambi/Ambi_Create_AmbiGran16.lua export-ignore
+Data/toolbar_icons/icst_ambigran16.png export-ignore
 make_zip.sh export-ignore
 # Zeilenenden
 *.lua  text eol=lf
