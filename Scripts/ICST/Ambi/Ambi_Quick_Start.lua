@@ -78,7 +78,7 @@ end
 -- Reverb (parallel) — IEM FdnReverb (VST3)
 local rv
 if want_rv then
-  rv = A.new_track("HOA_Reverb", 64)
+  rv = A.new_track(A.REVERB_NAME, 64)
   A.color_track(rv, "reverb")
   reaper.SetMediaTrackInfo_Value(rv, "B_MAINSEND", 0)
   if not A.add_fx(rv, A.FX_FDN_REVERB) then missing[#missing + 1] = "FdnReverb (IEM)" end

@@ -1,5 +1,5 @@
 -- @description ICST Ambi: HOA_MASTER-Spur anlegen (Sammelspur aller B-Format-Streams, 64 Kanaele)
--- Signalfluss mit Master:  Player / AmbiGran / Encoder  ->  [AmbiIRVerb / HOA-FX]  ->  HOA_MASTER  ->  Decoder und Binaural
+-- Signalfluss mit Master:  Player / AmbiGran / Encoder  ->  [HOA_Reverb / HOA-FX]  ->  HOA_MASTER  ->  Decoder und Binaural
 -- Die Spur hat keine FX (hier koennen z.B. SceneRotator, MultiEQ oder OmniCompressor fuer die Summe eingesetzt werden).
 -- Master-Send ist aus; Ambi_Auto_Route legt die Sends Quellen -> HOA_MASTER -> Decoder/Binaural.
 local dir = ({reaper.get_action_context()})[2]:match("^(.*)[/\\]")
