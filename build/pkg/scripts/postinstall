@@ -20,12 +20,14 @@ if [ ! -d "$DEST/REAPER.app" ]; then
 REAPER ist aus Lizenzgruenden nicht Teil dieses Pakets.
 1. REAPER fuer macOS von https://www.reaper.fm/download.php laden.
 2. REAPER.app in DIESEN Ordner (ICST_Ambi_Reaper) legen, neben reaper.ini.
-3. run-me-before-install.command mit Rechtsklick > Oeffnen ausfuehren, dann REAPER.app aus diesem Ordner starten.
+3. 'ICST_Ambi_Reaper starten.command' per Doppelklick ausfuehren (setzt den Plug-in-Pfad und startet REAPER.app aus diesem Ordner).
+   Blockiert macOS das Skript: Systemeinstellungen > Datenschutz & Sicherheit > Dennoch oeffnen.
 
 REAPER is not part of this package for licensing reasons.
 1. Download REAPER for macOS from https://www.reaper.fm/download.php
 2. Put REAPER.app into THIS folder (ICST_Ambi_Reaper), next to reaper.ini.
-3. Right-click > Open run-me-before-install.command, then start REAPER.app from this folder.
+3. Double-click 'ICST_Ambi_Reaper starten.command' (sets the plug-in path and starts REAPER.app from this folder).
+   If macOS blocks it: System Settings > Privacy & Security > Open Anyway.
 TXT
   /usr/sbin/chown "$CONSOLE_USER" "$DEST/REAPER.app FEHLT - bitte lesen.txt" 2>/dev/null || true
 fi

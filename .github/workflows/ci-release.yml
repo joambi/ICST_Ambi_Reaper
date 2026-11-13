@@ -36,12 +36,7 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           draft: true
+          prerelease: true
+          name: ICST_Ambi_Reaper ${{ github.ref_name }}
           files: ICST_Ambi_Reaper_*_scripts-only.zip
-          body: |
-            **Downloads**
-            - `…_macOS.pkg` — Installer nach `/Applications/ICST_Ambi_Reaper` (empfohlen)
-            - `…_macOS.zip` — portabler Ordner, z. B. fuer eine externe SSD
-            - `…_scripts-only.zip` — nur Scripts/Icons/Doku/Konfiguration (Windows, bestehende REAPER-Installation)
-
-            REAPER selbst ist nicht enthalten: https://www.reaper.fm/download.php
-            Die macOS-Dateien werden lokal mit `build/make_release.sh` gebaut und hier hochgeladen (siehe build/RELEASE.md).
+          body_path: build/RELEASE_NOTES_${{ github.ref_name }}.md

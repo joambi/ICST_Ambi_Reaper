@@ -37,7 +37,7 @@ Ein vorkonfigurierter [REAPER](https://www.reaper.fm)-Ordner mit Toolbar, Skript
 
 ## 3. Installation und Quick Start: Windows (Beta, ungetestet)
 
-Der Ordner ist ein macOS-Bundle: die Plug-ins in `Effects/VST3`, die Dateien in `UserPlugins` und `Animator/` laufen nur auf macOS. Auf Windows werden deshalb nur die plattformunabhängigen Teile übernommen (Skripte, Icons, Menü, Doku, Impulsantworten) und die Plug-ins per Installer eingerichtet. Die Skripte sind überwiegend plattformneutral geschrieben (Pfad- und Shell-Aufrufe berücksichtigen Windows); ein vollständiger Durchlauf auf Windows steht noch aus.
+Der Ordner ist ein macOS-Bundle: die Plug-ins in `Effects/VST3`, die Dateien in `UserPlugins` und `Animator/` laufen nur auf macOS. Auf Windows werden deshalb nur die plattformunabhängigen Teile übernommen (Skripte, Icons, Menü, Doku) und die Plug-ins per Installer eingerichtet. Die Skripte sind überwiegend plattformneutral geschrieben (Pfad- und Shell-Aufrufe berücksichtigen Windows); ein vollständiger Durchlauf auf Windows steht noch aus.
 
 **Voraussetzungen:** Windows 10/11 (64 Bit), REAPER 7 (64 Bit, getestet wurde nur unter macOS mit 7.85), Python 3 von [python.org](https://www.python.org) (bei der Installation *Add python.exe to PATH* anhaken; nur für Motion Map, [Motion Markers](https://ambisonics.ch/icst-ambisonics-plugins/14_icst_ambi_motion_markers/) und [Kristall Motion Map](https://ambisonics.ch/icst-ambisonics-plugins/18_kristall_motion_map/)).
 

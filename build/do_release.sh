@@ -28,6 +28,8 @@ OUT="../ICST_Ambi_Reaper_releases"
 # 4. Draft sicherstellen, Notes setzen, Dateien hochladen (Veroeffentlichen bleibt manuell)
 for i in 1 2 3 4 5 6; do gh release view "v$VER" -R "$REPO" >/dev/null 2>&1 && break; sleep 10; done
 gh release view "v$VER" -R "$REPO" >/dev/null 2>&1 || gh release create "v$VER" -R "$REPO" --draft --title "ICST_Ambi_Reaper v$VER"
-gh release edit "v$VER" -R "$REPO" --title "ICST_Ambi_Reaper v$VER" -F build/RELEASE_NOTES_v1.0.0.md
+NOTES="build/RELEASE_NOTES_v$VER.md"
+[ -f "$NOTES" ] || { echo "$NOTES fehlt"; exit 1; }
+gh release edit "v$VER" -R "$REPO" --title "ICST_Ambi_Reaper v$VER" --prerelease -F "$NOTES"
 gh release upload "v$VER" -R "$REPO" "$OUT"/ICST_Ambi_Reaper_${VER}_macOS.* --clobber
 echo "Draft fertig: https://github.com/$REPO/releases  -> pruefen, dann: gh release edit v$VER -R $REPO --draft=false"

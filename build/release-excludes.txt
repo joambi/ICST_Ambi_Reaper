@@ -6,6 +6,7 @@
 - /reaper-install-rev.txt
 # Skripte fuer nicht mitgelieferte Plug-ins
 - /Scripts/ICST/Ambi/Ambi_Create_AmbiGran16.lua
+- /Data/toolbar_icons/icst_ambigran16.png
 
 # Repo-Infrastruktur
 - /.git
