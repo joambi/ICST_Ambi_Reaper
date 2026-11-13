@@ -34,6 +34,7 @@ M.MASTER_NAME = "HOA_MASTER"   -- Name der Sammelspur; Ambi_Auto_Route erkennt s
 -- Namen laut REAPER-Plugin-Cache: "AmbiEncoder (ICST)", "AmbiEncoder_64 (ICST)", "AmbiDecoder (ICST)".
 M.FX_ENCODER = { "VST3: AmbiEncoder (ICST)", "VST3: AmbiEncoder (ICST" }
 M.FX_REVERB = { "VST3: AmbiIRVerb (Independent)", "VST3: AmbiIRVerb" }
+M.FX_FDN_REVERB = { "VST3: FdnReverb (IEM)", "VST3: FdnReverb" }   -- Quick-Start: HOA_Reverb
 M.FX_GRAN = { "VST3: AmbiGran 16 (ICST)", "VST3: AmbiGran 16" }
 M.FX_ENCODER_64 = { "VST3: AmbiEncoder_64 (ICST)", "VST3: AmbiEncoder_64" }
 M.FX_DECODER = { "VST3: AmbiDecoder (ICST)", "VST3: AmbiDecoder (ICST" }
