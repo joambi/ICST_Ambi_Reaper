@@ -17,10 +17,7 @@ Animator/
 Scripts/Cockos/
 Effects/*
 !Effects/ICST/
-!Effects/IRidesce/
-!Effects/IRidesce.jsfx
 Data/*
-!Data/IRidesce/
 !Data/toolbar_icons/
 Data/toolbar_icons/*
 !Data/toolbar_icons/icst_*

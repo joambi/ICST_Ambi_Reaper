@@ -5,7 +5,6 @@
 - /Effects/VST3/dearVR*
 - /reaper-install-rev.txt
 # Skripte fuer nicht mitgelieferte Plug-ins
-- /Scripts/ICST/Ambi/Ambi_Create_HOA_Reverb.lua
 - /Scripts/ICST/Ambi/Ambi_Create_AmbiGran16.lua
 
 # Repo-Infrastruktur
@@ -73,3 +72,9 @@
 - *.tmp
 - .DS_Store
 - ._*
+
+# Nicht oeffentlich (ICST Extended)
+- /Data/IRidesce
+- /Docs/images/ambiir*
+- /Effects/IRidesce
+- /Effects/IRidesce.jsfx

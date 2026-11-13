@@ -13,13 +13,12 @@ PARTICULAR PURPOSE. See the GNU General Public License below for more details.
 Geltungsbereich / Scope
 -----------------------
 Diese Lizenz gilt fuer die in diesem Repository versionierten Inhalte:
-ReaScripts (Scripts/ICST), JSFX (Effects/ICST, IRidesce.jsfx), Toolbar-Icons,
+ReaScripts (Scripts/ICST), JSFX (Effects/ICST), Toolbar-Icons,
 Konfiguration (reaper-menu.ini, reaper-kb.ini, OSC, Presets), Dokumentation (Docs).
 
 Nicht darunter fallen die als Release-Download mitgelieferten Binaries:
 die ICST-Core-Plug-ins AmbiEncoder/AmbiDecoder (GPL-3.0, eigenes Repository),
-die ICST-Extended-Plug-ins AmbiIRVerb, AmbiIRLayers, AmbiGran 16 (Beta, Lizenz
-noch offen), der Animator Choreographer (ICST) sowie Komponenten Dritter —
+die ICST-Extended-Plug-ins (Beta, nicht oeffentlich, Lizenz noch offen), der Animator Choreographer (ICST) sowie Komponenten Dritter —
 siehe THIRD_PARTY_LICENSES.md.
 REAPER (Cockos Inc.) ist nicht enthalten und muss separat bezogen und lizenziert
 werden. Die Zusammenstellung dieser Teile in einem Download ist eine blosse

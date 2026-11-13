@@ -1,10 +1,11 @@
 -- @description ICST Ambi: Offene Spuren nach FX analysieren und automatisch routen
--- Signalfluss:  Player / AmbiGran / Encoder  ->  [HOA_FX seriell]  ->  [AmbiIRVerb parallel]  ->  [HOA_MASTER]  ->  Decoder  und  Binaural
+-- Signalfluss:  Player / AmbiGran / Encoder  ->  [HOA_FX seriell]  ->  [HOA_Reverb parallel]  ->  [HOA_MASTER]  ->  Decoder  und  Binaural
 -- HOA_FX-Spuren (IEM-Effekte) liegen SERIELL im Signalweg: die Quellen gehen nur dorthin, der FX-Ausgang weiter zu Reverb/Master.
--- Reverb (AmbiIRVerb) bleibt PARALLEL (Aux): trockenes Signal und Hall treffen sich am Master bzw. an den Zielen.
+-- Reverb (Spur "HOA_Reverb", IEM FdnReverb) bleibt PARALLEL (Aux): trockenes Signal und Hall treffen sich am Master bzw. an den Zielen.
 -- Gibt es eine Spur "HOA_MASTER" (Ambi_Create_HOA_Master), laufen ALLE B-Format-Streams dort zusammen und nur der
 -- Master speist Decoder und Binaural. Ohne Master: Quellen/Reverb direkt auf Decoder und Binaural (wie bisher).
--- Erkennung ueber FX-Namen (AmbiEncoder, AmbiEncoder_64, AmbiGran, AmbiIRVerb, AmbiDecoder, BinauralDecoder (IEM), dearVR)
+-- Erkennung ueber FX-Namen (AmbiEncoder, AmbiEncoder_64, AmbiGran, AmbiDecoder, BinauralDecoder (IEM), dearVR);
+-- Reverb ueber den Spurnamen "HOA_Reverb" (sonst wuerde FdnReverb als serielle IEM-FX-Spur gelten)
 -- bzw. Spurname "BFormat_Player...". Bestehende Sends zu den Zielspuren werden ersetzt (idempotent).
 local dir = ({reaper.get_action_context()})[2]:match("^(.*)[/\\]")
 local A = dofile(dir .. "/lib/ambi_common.lua")
@@ -26,7 +27,7 @@ local function classify(tr)
   if     tname == A.MASTER_NAME                 then role = "master"
   elseif j:find("dearvr", 1, true) or j:find("binauraldecoder", 1, true) then role = "binaural"
   elseif j:find("ambidecoder", 1, true)  then role = "decoder"
-  elseif j:find("ambiirverb", 1, true)   then role = "reverb"
+  elseif tname == A.REVERB_NAME          then role = "reverb"
   elseif j:find("ambiencoder", 1, true)  then role = "encoder"   -- schliesst _64 ein
   elseif j:find("ambigran", 1, true)     then role = "source"
   elseif j:find("(iem)", 1, true)        then role = "fx"        -- HOA-FX-Spur (IEM): seriell Quelle -> FX -> Reverb/Master

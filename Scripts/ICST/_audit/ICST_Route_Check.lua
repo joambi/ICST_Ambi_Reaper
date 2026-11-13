@@ -15,7 +15,7 @@ local function role_of(tr)
   if     name_of(tr) == A.MASTER_NAME then role = "master"
   elseif j:find("dearvr", 1, true) or j:find("binauraldecoder", 1, true) then role = "binaural"
   elseif j:find("ambidecoder", 1, true) then role = "decoder"
-  elseif j:find("ambiirverb", 1, true)  then role = "reverb"
+  elseif name_of(tr) == A.REVERB_NAME then role = "reverb"
   elseif j:find("ambiencoder", 1, true) then role = "encoder"
   elseif j:find("ambigran", 1, true)    then role = "source"
   elseif j:find("(iem)", 1, true)       then role = "fx"
