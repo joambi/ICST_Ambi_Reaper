@@ -6,5 +6,9 @@ REAPER selbst ist aus Lizenzgruenden nicht enthalten, und der Installer kopiert 
 
 Nach der Installation: REAPER.app AUS DEM ORDNER ICST_Ambi_Reaper starten (nur so arbeitet es portabel mit diesen Einstellungen).
 
+Beim ersten Start fragt REAPER: "Would you like to scan system VST/CLAP/LV2 paths?" Mit No antworten. Dann liest REAPER nur die Plug-ins aus Effects/VST3; mit Yes liest es alle systemweit installierten Plug-ins ein, was lange dauern kann.
+
 ---
 This package installs /Applications/ICST_Ambi_Reaper (toolbar, scripts, VST3 plug-ins, docs). REAPER itself is not included, and the installer does not copy an existing REAPER.app into the folder. Download REAPER from reaper.fm and put REAPER.app into the folder. Always start REAPER.app FROM the ICST_Ambi_Reaper folder.
+
+On the first start REAPER asks: "Would you like to scan system VST/CLAP/LV2 paths?" Answer No. REAPER then reads only the plug-ins in Effects/VST3; with Yes it scans every plug-in installed on the system, which can take long.
