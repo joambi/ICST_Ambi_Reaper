@@ -69,7 +69,7 @@ A preconfigured [REAPER](https://www.reaper.fm) folder with toolbar, scripts, [V
 1. Add a new track with a mono audio file. Click **Encoder 64** (red-orange) on that track: AmbiEncoder_64 is inserted.
 2. Click **Decoder** (blue) for loudspeakers or **Binaural** (violet) for headphones.
 3. Optional: **HOA FX** for IEM effects.
-4. Click **Auto-Route**: the 16-channel sends sources › HOA FX › decoder/binaural are created.
+4. Click **Auto-Route**: the sends sources › HOA FX › decoder/binaural are created. They take the channel count of the tracks, so 64 channels with the AmbiEncoder_64.
 5. Play and move the source in the encoder.
 
 To write movements use **[Motion Map GUI](https://ambisonics.ch/icst-ambisonics-plugins/15_icst_ambi_motion_map/)** / **Spat Motion Automation** (chapter 6 of the manual).
