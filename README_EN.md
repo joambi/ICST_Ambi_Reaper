@@ -56,11 +56,23 @@ A preconfigured [REAPER](https://www.reaper.fm) folder with toolbar, scripts, [V
 **Do not install twice:** if the same plug-ins are also installed system-wide by the ICST or IEM installers into `/Library/Audio/Plug-Ins/VST3`, REAPER may load the old copy from there. Use either the folder or the system-wide plug-ins, not both.
 
 ### First run (10 minutes)
+
+**Option A: Quick Start (one click).** Tested with v1.1.1 and REAPER 7.85 after a fresh PKG installation.
+1. New, empty project (*File › New project*).
+2. In the toolbar *ICST_Ambi_Automation*, click **Quick Start** on the far left (lightning bolt, button 1).
+3. The dialog *ICST Quick-Start* asks for five values. Default: `4, n, n, j, j` = 4 mono sources, no HOA_FX track, no HOA_Reverb, decoder yes, binaural yes (`j` = yes, `n` = no). Confirm with **OK**. The dialog remembers the last values.
+4. This creates `Src_01` to `Src_04`, `Ambi_Encoder_64`, `HOA_MASTER`, a decoder and a binaural track, including routing. For reverb, set *HOA_Reverb* to `j`: a track `HOA_Reverb` with IEM FdnReverb is added in parallel between the encoder (or HOA_FX) and `HOA_MASTER`.
+5. Put a mono audio file on `Src_01`, play and move the source in AmbiEncoder_64. Headphones: via the binaural track; loudspeakers: via the decoder.
+6. **Animator** (button 16) starts the Animator Choreographer.
+
+**Option B: step by step.**
 1. Add a new track with a mono audio file. Click **Encoder 64** (red-orange) on that track: AmbiEncoder_64 is inserted.
 2. Click **Decoder** (blue) for loudspeakers or **Binaural** (violet) for headphones.
 3. Optional: **HOA FX** for IEM effects.
 4. Click **Auto-Route**: the 16-channel sends sources › HOA FX › decoder/binaural are created.
-5. Play and move the source in the encoder. To write movements use **[Motion Map GUI](https://ambisonics.ch/icst-ambisonics-plugins/15_icst_ambi_motion_map/)** / **Spat Motion Automation** (chapter 6 of the manual).
+5. Play and move the source in the encoder.
+
+To write movements use **[Motion Map GUI](https://ambisonics.ch/icst-ambisonics-plugins/15_icst_ambi_motion_map/)** / **Spat Motion Automation** (chapter 6 of the manual).
 
 ## 3. Installation and quick start: Windows (beta, untested)
 
