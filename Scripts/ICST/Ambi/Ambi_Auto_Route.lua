@@ -135,12 +135,12 @@ end
 --   seriell  (s): Quellen -> HOA_FX -> Master   (Insert: Rotation, EQ, Kompressor auf der ganzen Szene)
 --   parallel (p): Quellen -> HOA_FX und Quellen -> Master, HOA_FX -> Master (Send/Aux wie beim Reverb)
 local ok, ans = reaper.GetUserInputs("Auto-Routing", 2,
-  "Spuren sortieren (j/n):,HOA_FX seriell (s) / parallel (p):,extrawidth=60",
+  "Spuren sortieren (j/n, y = j):,HOA_FX seriell (s) / parallel (p):,extrawidth=60",
   A.get("route_sort", "n") .. "," .. A.get("route_fxmode", "s"))
 if not ok then return end
 local a1, a2 = ans:match("^([^,]*),([^,]*)")
-local do_sort = (a1 or ""):lower():sub(1, 1) == "j"
-local fx_parallel = (a2 or ""):lower():sub(1, 1) == "p"
+local do_sort = A.yes(a1)
+local fx_parallel = (a2 or ""):lower():match("^%s*(.)") == "p"
 A.set("route_sort", do_sort and "j" or "n")
 A.set("route_fxmode", fx_parallel and "p" or "s")
 

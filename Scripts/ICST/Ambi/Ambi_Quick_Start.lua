@@ -26,13 +26,13 @@ end
 -- Dialog (Werte werden gemerkt)
 local defaults = A.get("qs_last", "4,n,n,j,j")
 local ok, input = reaper.GetUserInputs("ICST Quick-Start", 5,
-  "Mono-Quellen (0-64):,HOA_FX-Spur (j/n):,HOA_Reverb (j/n):,Decoder (j/n):,Binaural (j/n):,extrawidth=40", defaults)
+  "Mono-Quellen (0-64):,HOA_FX-Spur (j/n, y = j):,HOA_Reverb (j/n):,Decoder (j/n):,Binaural (j/n):,extrawidth=60", defaults)
 if not ok then return end
 local f = {}
 for v in input:gmatch("[^,]*") do f[#f + 1] = v end
 local n_src = math.floor(tonumber(f[1]) or 4)
 if n_src < 0 or n_src > 64 then A.msg("Mono-Quellen: 0 bis 64."); return end
-local function yes(v) return (v or ""):lower():sub(1, 1) == "j" end
+local yes = A.yes
 local want_fx, want_rv, want_dec, want_bin = yes(f[2]), yes(f[3]), yes(f[4]), yes(f[5])
 A.set("qs_last", input)
 
