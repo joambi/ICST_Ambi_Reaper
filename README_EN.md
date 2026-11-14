@@ -15,7 +15,7 @@ A preconfigured [REAPER](https://www.reaper.fm) folder with toolbar, scripts, [V
 
 ## 2. Installation and quick start: macOS
 
-**Download:** [GitHub Releases](https://github.com/joambi/ICST_Ambi_Reaper/releases) — `ICST_Ambi_Reaper_<version>_macOS.pkg` (installer to `/Applications/ICST_Ambi_Reaper`; copies an existing `/Applications/REAPER.app` into the folder and sets the plug-in path — then continue at step 4) or `…_macOS.zip` (portable, e.g. for an external SSD — steps 1–6). `…_scripts-only.zip` contains only the platform-neutral parts (Windows, section 3). **REAPER itself is not included for licensing reasons.** Unsigned PKG: double-click, close the message, then System Settings › Privacy & Security › **Open Anyway** and confirm with your password (macOS 15 and later; up to macOS 14, Ctrl-click › Open is enough).
+**Download:** [GitHub Releases](https://github.com/joambi/ICST_Ambi_Reaper/releases) — `ICST_Ambi_Reaper_<version>_macOS.pkg` (installer to `/Applications/ICST_Ambi_Reaper`; sets the plug-in path but does not put a `REAPER.app` into the folder — then continue at step 2) or `…_macOS.zip` (portable, e.g. for an external SSD — steps 1–6). `…_scripts-only.zip` contains only the platform-neutral parts (Windows, section 3). **REAPER itself is not included for licensing reasons.** Unsigned PKG: double-click, close the message, then System Settings › Privacy & Security › **Open Anyway** and confirm with your password (macOS 15 and later; up to macOS 14, Ctrl-click › Open is enough).
 
 **Requirements:** macOS 12 or newer, Apple Silicon recommended (on Intel Macs the extensions in `UserPlugins` are missing), REAPER 7 (tested with 7.85). Optional for the Motion Map tools: Python 3 (`xcode-select --install` in Terminal).
 
