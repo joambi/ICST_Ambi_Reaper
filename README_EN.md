@@ -15,18 +15,45 @@ A preconfigured [REAPER](https://www.reaper.fm) folder with toolbar, scripts, [V
 
 ## 2. Installation and quick start: macOS
 
-**Download:** [GitHub Releases](https://github.com/joambi/ICST_Ambi_Reaper/releases) — `ICST_Ambi_Reaper_<version>_macOS.pkg` (installer to `/Applications/ICST_Ambi_Reaper`; sets the plug-in path but does not put a `REAPER.app` into the folder — then continue at step 2) or `…_macOS.zip` (portable, e.g. for an external SSD — steps 1–6). `…_scripts-only.zip` contains only the platform-neutral parts (Windows, section 3). **REAPER itself is not included for licensing reasons.** Unsigned PKG: double-click, close the message, then System Settings › Privacy & Security › **Open Anyway** and confirm with your password (macOS 15 and later; up to macOS 14, Ctrl-click › Open is enough).
+**Download:** [GitHub Releases](https://github.com/joambi/ICST_Ambi_Reaper/releases). There are two ways for macOS, both with the same content:
+
+| File | Where | Guide |
+|---|---|---|
+| `ICST_Ambi_Reaper_<version>_macOS.pkg` | installer, always to `/Applications/ICST_Ambi_Reaper` | 2.1 |
+| `ICST_Ambi_Reaper_<version>_macOS.zip` | portable folder, any location, e.g. an external SSD | 2.2 |
+
+`…_scripts-only.zip` contains only the platform-neutral parts (Windows, section 3). **REAPER itself is not included in any package for licensing reasons.**
 
 **Requirements:** macOS 12 or newer, Apple Silicon recommended (on Intel Macs the extensions in `UserPlugins` are missing), REAPER 7 (tested with 7.85). Optional for the Motion Map tools: Python 3 (`xcode-select --install` in Terminal).
 
-1. **Copy the folder** `ICST_Ambi_Reaper` to a fixed location (external SSD or `~/Music`). Spaces in the path are fine.
-2. **Check REAPER.app.** If `REAPER.app` is not in the folder, download REAPER for macOS from [reaper.fm](https://www.reaper.fm) (same major version) and put it **inside `ICST_Ambi_Reaper`**, next to `reaper.ini`. This is what makes REAPER run portably from this folder.
-3. **Setup script.** Double-click `run-me-before-install.command`. After a download macOS blocks it: close the message, then System Settings › Privacy & Security › **Open Anyway** and confirm with your password (macOS 15 and later; up to macOS 14, Ctrl-click › **Open** is enough). The script removes the macOS quarantine flag and points the plug-in path in `reaper.ini` to the current location. From then on, preferably always open REAPER with `ICST_Ambi_Reaper starten.command`: it points the plug-in path to the current location on every start (also on external drives with a different name) and starts `REAPER.app` from the folder. On startup REAPER additionally checks the path and the plug-in list and tells you what to do.
-4. **Start REAPER** using the `REAPER.app` **from this folder**. If macOS warns: use the same **Open Anyway** path. Check: *Options › Show REAPER resource path in explorer/finder* must open `ICST_Ambi_Reaper`.
-5. **Scan plug-ins.** *Options › Preferences › Plug-ins › VST*: the path ends in `Effects/VST3`; click **Re-scan** (if needed *Clear cache and re-scan*).
-6. **Toolbar.** On the first start REAPER opens the toolbar *ICST_Ambi_Automation* by itself. Later, if it was closed: *View › Toolbars › Floating toolbar 1*.
+**Gatekeeper:** the PKG and the scripts are not signed with a Developer ID. If macOS blocks a file, close the message, then *System Settings › Privacy & Security › Open Anyway* and confirm with your password (macOS 15 and later; up to macOS 14, Ctrl-click › *Open* is enough).
 
-**Do not install twice:** if the same plug-ins are also installed from the `.pkg` installers into `/Library/Audio/Plug-Ins/VST3`, REAPER may load the old copy from there. Use either the folder or the `.pkg` plug-ins, not both.
+### 2.1 Installer (PKG), step by step
+
+1. **Download the PKG.** `ICST_Ambi_Reaper_<version>_macOS.pkg` from the releases.
+2. **Open the PKG.** Double-click. If macOS blocks it: use *Open Anyway* (see Gatekeeper).
+3. **Run the installer.** *Continue*, *Agree* to the licence, *Install*, confirm with your password. The installer creates `/Applications/ICST_Ambi_Reaper`, sets the plug-in path in `reaper.ini` and hands the folder over to the logged-in user. Plug-ins installed from the PKG carry no quarantine flag; `run-me-before-install.command` is not needed.
+4. **Download REAPER.** Get the macOS version from [reaper.fm](https://www.reaper.fm/download.php) and open the disk image.
+5. **Put REAPER.app into the folder.** In the Finder open *Applications › ICST_Ambi_Reaper* and drag `REAPER.app` from the disk image into it, next to `reaper.ini`. This is what makes REAPER run portably from this folder. An existing `/Applications/REAPER.app` is left untouched. The file `REAPER.app FEHLT - bitte lesen.txt` can be deleted afterwards.
+6. **Start REAPER.** Double-click `ICST_Ambi_Reaper starten.command` in the folder. The script sets the plug-in path and starts `REAPER.app` from the folder.
+7. **Answer the scan question.** On the first start REAPER (7.50 and later) asks *New portable install detected … Would you like to scan system VST/CLAP/LV2 paths?* Answer **No**: REAPER then reads only the plug-ins in `Effects/VST3`. With **Yes** REAPER appends `/Library/Audio/Plug-Ins/VST3` and `~/Library/Audio/Plug-Ins/VST3` to the plug-in path and scans every plug-in installed there, which takes long with many plug-ins.
+8. **Check the toolbar.** On the first start the toolbar *ICST_Ambi_Automation* is docked at the top of the main window. Other position: right-click an empty area of the toolbar › *Position toolbar*. If it was closed: *View › Toolbars › Floating toolbar 1*.
+9. **Check.** *Options › Show REAPER resource path in explorer/finder* must open the folder `ICST_Ambi_Reaper`. Continue with the **First run** below.
+
+### 2.2 Bundle ZIP (portable), step by step
+
+1. **Download the ZIP.** `ICST_Ambi_Reaper_<version>_macOS.zip` from the releases.
+2. **Unpack.** Double-click the ZIP. This creates the folder `ICST_Ambi_Reaper`.
+3. **Put the folder in a fixed location**, e.g. an external SSD or `~/Music`. Spaces in the path are fine. Avoid moving the folder after setup; if you do, step 7 sets the path again.
+4. **Download REAPER.** Get the macOS version from [reaper.fm](https://www.reaper.fm/download.php) (same major version, tested with 7.85) and open the disk image.
+5. **Put REAPER.app into the folder.** Drag `REAPER.app` into `ICST_Ambi_Reaper`, next to `reaper.ini`.
+6. **Setup script.** Double-click `run-me-before-install.command`. The first time macOS blocks it: use *Open Anyway* (see Gatekeeper). The script removes the quarantine flag from plug-ins and scripts and points the plug-in path in `reaper.ini` to the current location.
+7. **Start REAPER.** From now on always with `ICST_Ambi_Reaper starten.command`. It points the plug-in path to the current location on every start (also on external drives with a different name) and starts `REAPER.app` from the folder. If macOS warns on the first REAPER start: use *Open Anyway* again.
+8. **Answer the scan question.** As in 2.1, step 7: answer **No**.
+9. **Check the toolbar.** As in 2.1, step 8.
+10. **Check.** *Options › Show REAPER resource path in explorer/finder* must open the folder `ICST_Ambi_Reaper`. If plug-ins are missing: *Options › Preferences › Plug-ins › VST*, the path ends in `Effects/VST3`, **Re-scan** (if needed *Clear cache and re-scan*).
+
+**Do not install twice:** if the same plug-ins are also installed system-wide by the ICST or IEM installers into `/Library/Audio/Plug-Ins/VST3`, REAPER may load the old copy from there. Use either the folder or the system-wide plug-ins, not both.
 
 ### First run (10 minutes)
 1. Add a new track with a mono audio file. Click **Encoder 64** (red-orange) on that track: AmbiEncoder_64 is inserted.

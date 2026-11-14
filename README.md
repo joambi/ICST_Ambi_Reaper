@@ -15,18 +15,45 @@ Ein vorkonfigurierter [REAPER](https://www.reaper.fm)-Ordner mit Toolbar, Skript
 
 ## 2. Installation und Quick Start: macOS
 
-**Download:** [GitHub Releases](https://github.com/joambi/ICST_Ambi_Reaper/releases) — `ICST_Ambi_Reaper_<Version>_macOS.pkg` (Installer nach `/Applications/ICST_Ambi_Reaper`; setzt den Plug-in-Pfad, legt aber keine `REAPER.app` in den Ordner — danach weiter mit Schritt 2) oder `…_macOS.zip` (portabel, z. B. für eine externe SSD — Schritte 1–6). `…_scripts-only.zip` enthält nur die plattformneutralen Teile (Windows, Abschnitt 3). **REAPER selbst ist aus Lizenzgründen nicht enthalten.** Unsigniertes PKG: Doppelklick, Meldung schliessen, dann Systemeinstellungen › Datenschutz & Sicherheit › **Dennoch öffnen** und mit dem Passwort bestätigen (ab macOS 15; bis macOS 14 genügt Ctrl-Klick › Öffnen).
+**Download:** [GitHub Releases](https://github.com/joambi/ICST_Ambi_Reaper/releases). Es gibt zwei Wege für macOS, beide mit demselben Inhalt:
+
+| Datei | Wohin | Anleitung |
+|---|---|---|
+| `ICST_Ambi_Reaper_<Version>_macOS.pkg` | Installer, immer nach `/Applications/ICST_Ambi_Reaper` | 2.1 |
+| `ICST_Ambi_Reaper_<Version>_macOS.zip` | portabler Ordner, frei wählbarer Ort, z. B. externe SSD | 2.2 |
+
+`…_scripts-only.zip` enthält nur die plattformneutralen Teile (Windows, Abschnitt 3). **REAPER selbst ist aus Lizenzgründen in keinem der Pakete enthalten.**
 
 **Voraussetzungen:** macOS 12 oder neuer, Apple Silicon empfohlen (auf Intel-Macs fehlen die Erweiterungen in `UserPlugins`), REAPER 7 (getestet mit 7.85). Optional für die Motion-Map-Werkzeuge: Python 3 (`xcode-select --install` im Terminal).
 
-1. **Ordner kopieren.** `ICST_Ambi_Reaper` an einen festen Ort legen, z. B. auf die externe SSD oder nach `~/Music`. Leerzeichen im Pfad sind erlaubt.
-2. **REAPER.app prüfen.** Liegt `REAPER.app` nicht im Ordner, von [reaper.fm](https://www.reaper.fm) laden (macOS, gleiche Hauptversion) und **in den Ordner `ICST_Ambi_Reaper`** legen, neben `reaper.ini`. Nur so arbeitet REAPER portabel mit diesem Ordner.
-3. **Einrichtungsskript.** `run-me-before-install.command` per Doppelklick starten. Nach einem Download blockiert macOS das Skript: Meldung schliessen, dann Systemeinstellungen › Datenschutz & Sicherheit › **Dennoch öffnen** und mit dem Passwort bestätigen (ab macOS 15; bis macOS 14 genügt Ctrl-Klick › **Öffnen**). Das Skript entfernt das macOS-Quarantäne-Flag und setzt den Plug-in-Pfad in `reaper.ini` auf den aktuellen Speicherort. Danach REAPER am besten immer mit `ICST_Ambi_Reaper starten.command` öffnen: Es setzt den Plug-in-Pfad bei jedem Start auf den aktuellen Ort (auch auf externen Laufwerken mit anderem Namen) und startet `REAPER.app` aus dem Ordner. Beim Start prüft REAPER zusätzlich Pfad und Plug-in-Liste und meldet, was zu tun ist.
-4. **REAPER starten**, und zwar die `REAPER.app` **aus diesem Ordner**. Warnt macOS: derselbe Weg über **Dennoch öffnen**. Kontrolle: *Options › Show REAPER resource path in explorer/finder* muss auf den Ordner `ICST_Ambi_Reaper` zeigen.
-5. **Plug-ins scannen.** *Options › Preferences › Plug-ins › VST*: Pfad endet auf `Effects/VST3`; **Re-scan** klicken (bei Bedarf *Clear cache and re-scan*).
-6. **Toolbar.** Beim ersten Start öffnet REAPER die Toolbar *ICST_Ambi_Automation* von selbst. Später, wenn sie geschlossen wurde: *View › Toolbars › Floating toolbar 1*.
+**Gatekeeper:** PKG und Skripte sind nicht mit einer Developer-ID signiert. Blockiert macOS eine Datei, die Meldung schliessen, dann *Systemeinstellungen › Datenschutz & Sicherheit › Dennoch öffnen* und mit dem Passwort bestätigen (ab macOS 15; bis macOS 14 genügt Ctrl-Klick › *Öffnen*).
 
-**Nicht doppelt installieren:** Sind dieselben Plug-ins zusätzlich aus den `.pkg`-Installern in `/Library/Audio/Plug-Ins/VST3` installiert, lädt REAPER unter Umständen die alte Kopie von dort. Entweder nur den Ordner benutzen oder die `.pkg`-Plug-ins entfernen.
+### 2.1 Installer (PKG), Schritt für Schritt
+
+1. **PKG laden.** `ICST_Ambi_Reaper_<Version>_macOS.pkg` aus den Releases herunterladen.
+2. **PKG öffnen.** Doppelklick. Blockiert macOS das Paket: Weg über *Dennoch öffnen* (siehe Gatekeeper).
+3. **Installer durchlaufen.** *Fortfahren*, Lizenz *Akzeptieren*, *Installieren*, mit dem Passwort bestätigen. Der Installer legt `/Applications/ICST_Ambi_Reaper` an, setzt den Plug-in-Pfad in `reaper.ini` und übergibt den Ordner dem angemeldeten Benutzer. Plug-ins aus dem PKG tragen kein Quarantäne-Flag; `run-me-before-install.command` ist nicht nötig.
+4. **REAPER laden.** Von [reaper.fm](https://www.reaper.fm/download.php) die macOS-Version laden und das Disk-Image öffnen.
+5. **REAPER.app in den Ordner legen.** Im Finder *Programme › ICST_Ambi_Reaper* öffnen und `REAPER.app` aus dem Disk-Image dorthin ziehen, neben `reaper.ini`. Nur so arbeitet REAPER portabel mit diesem Ordner. Eine vorhandene `/Applications/REAPER.app` bleibt unberührt. Die Datei `REAPER.app FEHLT - bitte lesen.txt` kann danach gelöscht werden.
+6. **REAPER starten.** `ICST_Ambi_Reaper starten.command` im Ordner doppelklicken. Das Skript setzt den Plug-in-Pfad und startet `REAPER.app` aus dem Ordner.
+7. **Scan-Frage beantworten.** Beim ersten Start fragt REAPER (ab 7.50) *New portable install detected … Would you like to scan system VST/CLAP/LV2 paths?* Mit **No** antworten: Dann liest REAPER nur die Plug-ins aus `Effects/VST3`. Mit **Yes** hängt REAPER `/Library/Audio/Plug-Ins/VST3` und `~/Library/Audio/Plug-Ins/VST3` an den Plug-in-Pfad an und liest alle dort installierten Plug-ins ein, was bei vielen Plug-ins lange dauert.
+8. **Toolbar prüfen.** Die Toolbar *ICST_Ambi_Automation* erscheint beim ersten Start fest oben im Hauptfenster. Andere Position: Rechtsklick auf eine leere Stelle der Toolbar › *Position toolbar*. Wurde sie geschlossen: *View › Toolbars › Floating toolbar 1*.
+9. **Kontrolle.** *Options › Show REAPER resource path in explorer/finder* muss den Ordner `ICST_Ambi_Reaper` öffnen. Weiter mit dem **Ersten Durchlauf** unten.
+
+### 2.2 Bundle-ZIP (portabel), Schritt für Schritt
+
+1. **ZIP laden.** `ICST_Ambi_Reaper_<Version>_macOS.zip` aus den Releases herunterladen.
+2. **Entpacken.** Doppelklick auf das ZIP. Es entsteht der Ordner `ICST_Ambi_Reaper`.
+3. **Ordner an einen festen Ort legen**, z. B. auf die externe SSD oder nach `~/Music`. Leerzeichen im Pfad sind erlaubt. Nach dem Einrichten den Ordner möglichst nicht mehr verschieben; falls doch, setzt Schritt 7 den Pfad neu.
+4. **REAPER laden.** Von [reaper.fm](https://www.reaper.fm/download.php) die macOS-Version laden (gleiche Hauptversion, getestet mit 7.85) und das Disk-Image öffnen.
+5. **REAPER.app in den Ordner legen.** `REAPER.app` in den Ordner `ICST_Ambi_Reaper` ziehen, neben `reaper.ini`.
+6. **Einrichtungsskript.** `run-me-before-install.command` doppelklicken. Beim ersten Mal blockiert macOS das Skript: Weg über *Dennoch öffnen* (siehe Gatekeeper). Das Skript entfernt das Quarantäne-Flag von Plug-ins und Skripten und setzt den Plug-in-Pfad in `reaper.ini` auf den aktuellen Ort.
+7. **REAPER starten.** Ab jetzt immer mit `ICST_Ambi_Reaper starten.command`. Es setzt den Plug-in-Pfad bei jedem Start auf den aktuellen Ort (auch auf externen Laufwerken mit anderem Namen) und startet `REAPER.app` aus dem Ordner. Warnt macOS beim ersten Start von REAPER: derselbe Weg über *Dennoch öffnen*.
+8. **Scan-Frage beantworten.** Wie in 2.1, Schritt 7: mit **No** antworten.
+9. **Toolbar prüfen.** Wie in 2.1, Schritt 8.
+10. **Kontrolle.** *Options › Show REAPER resource path in explorer/finder* muss den Ordner `ICST_Ambi_Reaper` öffnen. Fehlen Plug-ins: *Options › Preferences › Plug-ins › VST*, der Pfad endet auf `Effects/VST3`, **Re-scan** (bei Bedarf *Clear cache and re-scan*).
+
+**Nicht doppelt installieren:** Sind dieselben Plug-ins zusätzlich über die Installer von ICST oder IEM in `/Library/Audio/Plug-Ins/VST3` installiert, lädt REAPER unter Umständen die alte Kopie von dort. Entweder nur den Ordner benutzen oder die systemweit installierten Plug-ins entfernen.
 
 ### Erster Durchlauf (10 Minuten)
 1. Neue Spur, Audiodatei (mono) einfügen. Auf der Spur **Encoder 64** klicken (rot-orange): AmbiEncoder_64 wird eingefügt.
