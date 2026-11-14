@@ -45,7 +45,7 @@ if command -v pkgbuild >/dev/null 2>&1; then
   pkgbuild --quiet --analyze --root "$STAGE" "$PLIST"
   i=0
   while /usr/libexec/PlistBuddy -c "Print :$i" "$PLIST" >/dev/null 2>&1; do
-    /usr/libexec/PlistBuddy -c "Set :$i:BundleIsRelocatable false" "$PLIST"
+    /usr/libexec/PlistBuddy -c "Set :$i:BundleIsRelocatable false" "$PLIST" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :$i:BundleIsRelocatable bool false" "$PLIST"
     i=$((i+1))
   done
   echo "   $i Bundle(s) nicht relozierbar"
