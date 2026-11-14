@@ -21,6 +21,7 @@ REAPER ist aus Lizenzgruenden nicht Teil dieses Pakets.
    Blockiert macOS das Skript: Systemeinstellungen > Datenschutz & Sicherheit > Dennoch oeffnen.
 4. Fragt REAPER beim ersten Start "Would you like to scan system VST/CLAP/LV2 paths?": mit No antworten.
    Dann liest REAPER nur die Plug-ins aus Effects/VST3 und nicht alle systemweit installierten.
+5. Die Toolbar ICST_Ambi_Automation erscheint oben im Hauptfenster. Ausfuehrlich: README.md, Abschnitt 2.1.
 
 REAPER is not part of this package for licensing reasons.
 1. Download REAPER for macOS from https://www.reaper.fm/download.php
@@ -29,6 +30,7 @@ REAPER is not part of this package for licensing reasons.
    If macOS blocks it: System Settings > Privacy & Security > Open Anyway.
 4. If REAPER asks on the first start "Would you like to scan system VST/CLAP/LV2 paths?": answer No.
    REAPER then reads only the plug-ins in Effects/VST3, not every plug-in installed on the system.
+5. The toolbar ICST_Ambi_Automation appears at the top of the main window. Full guide: README_EN.md, section 2.1.
 TXT
   /usr/sbin/chown "$CONSOLE_USER" "$DEST/REAPER.app FEHLT - bitte lesen.txt" 2>/dev/null || true
 fi

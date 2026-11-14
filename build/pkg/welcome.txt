@@ -1,14 +1,24 @@
 ICST Ambi Reaper — portabler REAPER-Ordner fuer Ambisonics (ICST / ZHdK)
 
-Dieses Paket installiert den Ordner /Applications/ICST_Ambi_Reaper mit Toolbar, Scripts, VST3-Plug-ins (ICST, IEM) und Dokumentation.
+Dieses Paket installiert den Ordner /Applications/ICST_Ambi_Reaper mit Toolbar, Scripts, VST3-Plug-ins (ICST, IEM) und Dokumentation. REAPER selbst ist aus Lizenzgruenden nicht enthalten, und der Installer kopiert auch keine vorhandene REAPER.app in den Ordner.
 
-REAPER selbst ist aus Lizenzgruenden nicht enthalten, und der Installer kopiert auch keine vorhandene REAPER.app in den Ordner. REAPER von reaper.fm laden und REAPER.app in den Ordner ICST_Ambi_Reaper legen.
+Nach der Installation:
+1. REAPER fuer macOS von https://www.reaper.fm/download.php laden.
+2. REAPER.app in den Ordner Programme > ICST_Ambi_Reaper legen, neben reaper.ini.
+3. 'ICST_Ambi_Reaper starten.command' im Ordner doppelklicken. Es startet REAPER.app aus dem Ordner (nur so arbeitet REAPER portabel mit diesen Einstellungen).
+4. Frage "Would you like to scan system VST/CLAP/LV2 paths?" mit No beantworten. Dann liest REAPER nur die Plug-ins aus Effects/VST3; mit Yes liest es alle systemweit installierten Plug-ins ein, was lange dauern kann.
+5. Die Toolbar ICST_Ambi_Automation erscheint oben im Hauptfenster.
 
-Nach der Installation: REAPER.app AUS DEM ORDNER ICST_Ambi_Reaper starten (nur so arbeitet es portabel mit diesen Einstellungen).
-
-Beim ersten Start fragt REAPER: "Would you like to scan system VST/CLAP/LV2 paths?" Mit No antworten. Dann liest REAPER nur die Plug-ins aus Effects/VST3; mit Yes liest es alle systemweit installierten Plug-ins ein, was lange dauern kann.
+Ausfuehrliche Anleitung: README.md im Ordner, Abschnitt 2.1.
 
 ---
-This package installs /Applications/ICST_Ambi_Reaper (toolbar, scripts, VST3 plug-ins, docs). REAPER itself is not included, and the installer does not copy an existing REAPER.app into the folder. Download REAPER from reaper.fm and put REAPER.app into the folder. Always start REAPER.app FROM the ICST_Ambi_Reaper folder.
+This package installs /Applications/ICST_Ambi_Reaper (toolbar, scripts, VST3 plug-ins, docs). REAPER itself is not included for licensing reasons, and the installer does not copy an existing REAPER.app into the folder.
 
-On the first start REAPER asks: "Would you like to scan system VST/CLAP/LV2 paths?" Answer No. REAPER then reads only the plug-ins in Effects/VST3; with Yes it scans every plug-in installed on the system, which can take long.
+After installation:
+1. Download REAPER for macOS from https://www.reaper.fm/download.php
+2. Put REAPER.app into Applications > ICST_Ambi_Reaper, next to reaper.ini.
+3. Double-click 'ICST_Ambi_Reaper starten.command' in the folder. It starts REAPER.app from the folder (only then does REAPER run portably with these settings).
+4. Answer "Would you like to scan system VST/CLAP/LV2 paths?" with No. REAPER then reads only the plug-ins in Effects/VST3; with Yes it scans every plug-in installed on the system, which can take long.
+5. The toolbar ICST_Ambi_Automation appears at the top of the main window.
+
+Full guide: README_EN.md in the folder, section 2.1.
