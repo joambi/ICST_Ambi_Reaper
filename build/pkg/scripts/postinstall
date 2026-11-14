@@ -3,10 +3,7 @@
 DEST="$2"
 CONSOLE_USER="$(/usr/bin/stat -f %Su /dev/console 2>/dev/null || echo root)"
 
-# REAPER.app wird aus Lizenzgruenden nicht mitgeliefert: vorhandene Installation in den portablen Ordner kopieren
-if [ ! -d "$DEST/REAPER.app" ] && [ -d /Applications/REAPER.app ]; then
-  /usr/bin/ditto /Applications/REAPER.app "$DEST/REAPER.app" || true
-fi
+# REAPER.app wird nicht mitgeliefert und auch nicht aus /Applications in den Ordner kopiert.
 
 # Plugin-Pfad in reaper.ini auf den Installationsort setzen (Quarantaene gibt es bei pkg-Installation nicht)
 ( cd "$DEST" && /bin/sh ./run-me-before-install.command ) >/dev/null 2>&1 || true

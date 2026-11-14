@@ -28,4 +28,4 @@ Ohne Signatur: Empfaenger oeffnen das PKG per Doppelklick, schliessen die Meldun
 
 ## Was das PKG tut
 
-Installiert nach `/Applications/ICST_Ambi_Reaper`, kopiert eine vorhandene `/Applications/REAPER.app` hinein (ditto), setzt den VST3-Pfad in `reaper.ini`, uebergibt den Ordner dem angemeldeten Benutzer. Dateien aus einem PKG tragen kein Quarantaene-Flag — die Plug-ins laden ohne Gatekeeper-Dialoge. Mitgelieferte `.app`-Bundles sind im PKG als nicht relozierbar markiert (`BundleIsRelocatable=false`), damit der Installer sie immer in den Ordner legt.
+Installiert nach `/Applications/ICST_Ambi_Reaper`, kopiert keine REAPER.app in den Ordner (auch keine vorhandene aus `/Applications`), setzt den VST3-Pfad in `reaper.ini`, uebergibt den Ordner dem angemeldeten Benutzer. Dateien aus einem PKG tragen kein Quarantaene-Flag — die Plug-ins laden ohne Gatekeeper-Dialoge. Mitgelieferte `.app`-Bundles sind im PKG als nicht relozierbar markiert (`BundleIsRelocatable=false`), damit der Installer sie immer in den Ordner legt.
