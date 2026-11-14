@@ -56,11 +56,23 @@ Ein vorkonfigurierter [REAPER](https://www.reaper.fm)-Ordner mit Toolbar, Skript
 **Nicht doppelt installieren:** Sind dieselben Plug-ins zusätzlich über die Installer von ICST oder IEM in `/Library/Audio/Plug-Ins/VST3` installiert, lädt REAPER unter Umständen die alte Kopie von dort. Entweder nur den Ordner benutzen oder die systemweit installierten Plug-ins entfernen.
 
 ### Erster Durchlauf (10 Minuten)
+
+**Variante A: Quick Start (ein Klick).** Getestet mit v1.1.1 und REAPER 7.85 nach einer frischen PKG-Installation.
+1. Neues, leeres Projekt (*File › New project*).
+2. In der Toolbar *ICST_Ambi_Automation* ganz links **Quick Start** (Blitz, Button 1) klicken.
+3. Der Dialog *ICST Quick-Start* fragt fünf Werte ab. Vorgabe: `4, n, n, j, j` = 4 Mono-Quellen, keine HOA_FX-Spur, kein HOA_Reverb, Decoder ja, Binaural ja. Mit **OK** bestätigen. Der Dialog merkt sich die zuletzt gewählten Werte.
+4. Es entstehen `Src_01` bis `Src_04`, `Ambi_Encoder_64`, `HOA_MASTER`, ein Decoder und eine Binaural-Spur, samt Routing. Wer Nachhall will, setzt bei *HOA_Reverb* `j`: Dann kommt eine Spur `HOA_Reverb` mit IEM FdnReverb dazu, parallel zwischen Encoder (bzw. HOA_FX) und `HOA_MASTER`.
+5. Auf `Src_01` eine Mono-Audiodatei einfügen, abspielen und im AmbiEncoder_64 die Quelle bewegen. Kopfhörer: über die Binaural-Spur; Lautsprecher: über den Decoder.
+6. **Animator** (Button 16) startet den Animator Choreographer.
+
+**Variante B: Schritt für Schritt.**
 1. Neue Spur, Audiodatei (mono) einfügen. Auf der Spur **Encoder 64** klicken (rot-orange): AmbiEncoder_64 wird eingefügt.
 2. **Decoder** (blau) für Lautsprecher oder **Binaural** (violett) für Kopfhörer anklicken.
 3. Optional **HOA FX** für Effekte (IEM).
 4. **Auto-Route** klicken: die Sends (16 Kanäle) Quellen › HOA FX › Decoder/Binaural werden gelegt.
-5. Abspielen, im Encoder die Quelle bewegen. Bewegungen schreiben: **[Motion Map GUI](https://ambisonics.ch/icst-ambisonics-plugins/15_icst_ambi_motion_map/)** / **Spat Motion Automation** (Kapitel 6 der Doku).
+5. Abspielen, im Encoder die Quelle bewegen.
+
+Bewegungen schreiben: **[Motion Map GUI](https://ambisonics.ch/icst-ambisonics-plugins/15_icst_ambi_motion_map/)** / **Spat Motion Automation** (Kapitel 6 der Doku).
 
 ## 3. Installation und Quick Start: Windows (Beta, ungetestet)
 
