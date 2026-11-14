@@ -1,11 +1,17 @@
 -- @description AmbiEncoder64 Motion Map GUI
 -- @author JS / Codex
--- @version 2.4.3
+-- @version 2.4.5
 -- @about
 --   Improved GUI for assigning motion shapes per ICST AmbiEncoder_64 source index,
 --   with live AZ/EL trajectory preview, anti-aliased icons, and color-coded source trails.
 --   Writes XYZ automation and a render region via JS_Write_AmbiEncoder64_Spat_Motion_Automation.lua.
 -- @changelog
+--   v2.4.5: Written tracks are always set to Latch (the Track Latch option is gone; old presets
+--         are ignored for this). New Sync button in the preview transport: the preview follows
+--         REAPER play/stop, and the GUI Play / Stop buttons start / stop the REAPER transport.
+--   v2.4.4: Preview transport under OSC PREVIEW (like Kristall Motion Map): Speed x (free-run
+--         and tempo-synced preview), Fwd/Rev direction, Play / Stop (Stop freezes the animation
+--         in the trajectory preview and in the live OSC preview). Not stored in presets.
 --   v2.4.3: Quantize controls (any figure): Time / T = number of time slices per figure cycle
 --         (0 = off), Q X / Q Y / Q Z = spatial rounding step in scale units (0 = off).
 --         Used by preview, live OSC, score export and the written automation; stored in presets.
@@ -81,6 +87,10 @@ local state = {
   cycle_beats      = "16",   -- figure cycle length in beats (quarter notes) when synced
   steps_per_beat   = "4",    -- automation steps per beat when synced
   quant_start      = true,   -- lock the cycle phase to bar lines (else to the selection start)
+  anim_speed       = "1.00", -- preview transport: speed factor (preview / live OSC only)
+  anim_rev         = false,  -- preview transport: reverse direction
+  anim_run         = true,   -- preview transport: false = animation frozen (Stop)
+  sync_transport   = false,  -- preview follows REAPER play/stop; Play/Stop buttons drive REAPER
   scale     = "1",    -- display scale factor (1=unit sphere, 10=10m, 50=50m, 100=100m)
   x_center  = "0.00", -- X center in scale units (−scale..+scale)
   x_spread  = "2.00", -- X total spread in scale units (0..2×scale) — 2.0 = full -1..+1
@@ -188,17 +198,28 @@ local function sync_info(ts0, ts1)
 end
 -- Animation phase for preview/OSC: synced → follows transport (play position)
 -- or free-runs at project tempo; otherwise the old 0.28 Hz free-run.
+local _anim = { phase = 0, last = nil }
 local function anim_phase(now)
-  if not state.bpm_sync then return (now * 0.28) % 1.0 end
-  local playing = (reaper.GetPlayState() & 1) == 1
-  if playing then
+  local dt = _anim.last and (now - _anim.last) or 0
+  _anim.last = now
+  if dt < 0 or dt > 0.25 then dt = 0 end
+  local speed = math.max(0, math.min(16, tonumber(state.anim_speed) or 1))
+  local dir   = state.anim_rev and -1 or 1
+  if state.bpm_sync and state.anim_run and (reaper.GetPlayState() & 1) == 1 then
     local pos = reaper.GetPlayPosition()
     local ts0, ts1 = reaper.GetSet_LoopTimeRange(false, false, 0, 0, false)
     local anchor = sync_anchor_beats(ts1 > ts0 and ts0 or pos)
-    return sync_cycle_phase(pos, anchor)
+    _anim.phase = sync_cycle_phase(pos, anchor)       -- follows the DAW transport
+    return _anim.phase
   end
-  local bpm = sync_bpm_at(reaper.GetCursorPosition())
-  return (now * bpm / 60 / sync_cycle_beats()) % 1.0
+  if state.anim_run then
+    local rate = 0.28                                  -- free-run: 0.28 cycles/s
+    if state.bpm_sync then
+      rate = sync_bpm_at(reaper.GetCursorPosition()) / 60 / sync_cycle_beats()
+    end
+    _anim.phase = (_anim.phase + dt * rate * speed * dir) % 1.0
+  end
+  return _anim.phase
 end
 local function smoothstep(t)   return t * t * (3 - 2 * t) end
 local function quantize_progress(t, steps)
@@ -667,7 +688,7 @@ local function preset_deserialize(str)
     elseif k == "palin"   then state.palindrome       = bv(v)
     elseif k == "use_z"   then state.use_z_motion     = bv(v)
     elseif k == "clear"   then state.clear_existing   = bv(v)
-    elseif k == "latch"   then state.set_latch        = bv(v)
+    elseif k == "latch"   then state.set_latch        = true   -- always Latch (v2.4.5)
     elseif k == "overwrite" then state.overwrite_region = bv(v)
     elseif k == "region"  then state.region_name      = v
     elseif k == "fig"     then state.shape_params     = fig_deserialize(v, false)
@@ -2136,6 +2157,26 @@ local function draw_osc_left()
     draw_text(_osc_err, x + 22, y + 18, 0.70, 0.36, 0.30)
     gfx.setfont(1, "Arial", 16)
   end
+
+  -- Preview transport (v2.4.4): speed / direction / play / stop (preview + live OSC only)
+  y = y + 40
+  draw_input("anim_speed", "Speed \195\151", x, y, 80)
+  if draw_button(state.anim_rev and "< Rev" or "> Fwd", x + 92, y + 16, 80, 22, state.anim_rev, false) then
+    state.anim_rev = not state.anim_rev; state.focus = nil
+  end
+  if draw_button("\226\150\182 Play", x + 180, y + 16, 80, 22, state.anim_run, false) then
+    state.anim_run = true; state.focus = nil
+    if state.sync_transport and (reaper.GetPlayState() & 1) == 0 then reaper.Main_OnCommand(1007, 0) end
+  end
+  if draw_button("\226\150\160 Stop", x + 268, y + 16, 80, 22, not state.anim_run, false) then
+    state.anim_run = false; state.focus = nil
+    if state.sync_transport and (reaper.GetPlayState() & 1) == 1 then reaper.Main_OnCommand(1016, 0) end
+  end
+  if draw_button(state.sync_transport and "Sync \226\156\147" or "Sync", x + 356, y + 16, 80, 22, state.sync_transport, false) then
+    state.sync_transport = not state.sync_transport; state.focus = nil
+    state.status = state.sync_transport and "Sync ON \226\128\148 preview follows REAPER play/stop; Play/Stop here start/stop REAPER"
+                                         or "Sync OFF \226\128\148 preview runs on its own"
+  end
 end
 
 local function reset_params()
@@ -2148,6 +2189,7 @@ local function reset_params()
   state.z_spread          = string.format("%.2f", 0.35 * s)
   state.motion_amount     = "1.0"
   state.source_phase      = "0.00"
+  state.anim_speed, state.anim_rev, state.anim_run = "1.00", false, true
   state.time_quant_steps  = "0"
   state.space_quant_x, state.space_quant_y, state.space_quant_z = "0.00", "0.00", "0.00"
   state.steps_per_second  = "12"
@@ -2346,7 +2388,10 @@ local function draw_settings()
     draw_input("space_quant_z",   "Q Z",     qx + (qw + 4) * 3, y - 4, qw)
   end
   state.clear_existing   = draw_toggle("Clear existing",  state.clear_existing,   x,        y)
-  state.set_latch        = draw_toggle("Track Latch",      state.set_latch,        x + 164,  y)
+  state.set_latch        = true   -- tracks are always written in Latch mode
+  gfx.setfont(2, "Arial", 12)
+  draw_text("Automation: Latch", x + 164 + 28, y + 5, 0.40, 0.50, 0.58)
+  gfx.setfont(1, "Arial", 16)
   y = y + 28
   state.overwrite_region = draw_toggle("Overwrite region", state.overwrite_region, x,        y)
   state.use_z_motion     = draw_toggle("Use Z motion",     state.use_z_motion,     x + 164,  y)
@@ -2645,7 +2690,7 @@ local function draw()
 
   -- Title bar
   gfx.setfont(2, "Arial", 22)
-  draw_text("AmbiEncoder64 Motion Map   v2.4", GRID_X, 10, 0.88, 0.92, 0.94)
+  draw_text("AmbiEncoder64 Motion Map   v2.4.5", GRID_X, 10, 0.88, 0.92, 0.94)
   gfx.setfont(2, "Arial", 12)
   draw_text("Assign motion shapes to sources, edit the figures in the Figure Editor, preview, then write XYZ automation over the time selection — or export the preview as a score image.",
             GRID_X, 40, 0.42, 0.50, 0.56)
@@ -2676,6 +2721,7 @@ local function loop()
   ui.char        = gfx.getchar()
   if ui.char < 0 then osc_close(); return end
   handle_text_input()
+  if state.sync_transport then state.anim_run = (reaper.GetPlayState() & 1) == 1 end
   if state.osc_preview then osc_send_preview() end
   draw()
   ui.last_mouse_down = ui.mouse_down
