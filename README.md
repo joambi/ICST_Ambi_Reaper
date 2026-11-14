@@ -69,7 +69,7 @@ Ein vorkonfigurierter [REAPER](https://www.reaper.fm)-Ordner mit Toolbar, Skript
 1. Neue Spur, Audiodatei (mono) einfügen. Auf der Spur **Encoder 64** klicken (rot-orange): AmbiEncoder_64 wird eingefügt.
 2. **Decoder** (blau) für Lautsprecher oder **Binaural** (violett) für Kopfhörer anklicken.
 3. Optional **HOA FX** für Effekte (IEM).
-4. **Auto-Route** klicken: die Sends (16 Kanäle) Quellen › HOA FX › Decoder/Binaural werden gelegt.
+4. **Auto-Route** klicken: die Sends Quellen › HOA FX › Decoder/Binaural werden gelegt. Sie übernehmen die Kanalzahl der Spuren, beim AmbiEncoder_64 also 64 Kanäle.
 5. Abspielen, im Encoder die Quelle bewegen.
 
 Bewegungen schreiben: **[Motion Map GUI](https://ambisonics.ch/icst-ambisonics-plugins/15_icst_ambi_motion_map/)** / **Spat Motion Automation** (Kapitel 6 der Doku).
@@ -140,7 +140,7 @@ Encoder orange · Encoder_64 rot-orange · Decoder blau · Binaural violett · P
 ## Typischer Ablauf / Typical workflow
 1. Quellen (Player / Encoder-Spuren) anlegen, optional HOA FX.
 2. Decoder und/oder Binaural anlegen.
-3. **Auto-Route** klicken: Sends (16 ch) Quellen → HOA FX → Decoder/Binaural.
+3. **Auto-Route** klicken: Sends (64 ch beim AmbiEncoder_64) Quellen → HOA FX → Decoder/Binaural.
 4. Regionen im Projekt setzen → **CSV-Export** → in der App "Import regions (CSV)".
 5. Animator-Szene in der App bauen (XML) → Animator in REAPER; Bewegung per Motion Map / Spat Automation.
 
