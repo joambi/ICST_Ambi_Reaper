@@ -53,6 +53,13 @@ end
 
 function M.set(key, val) reaper.SetExtState(M.EXT, key, tostring(val), true) end
 
+-- Ja/Nein-Feld aus GetUserInputs: j, ja, y, yes, 1 (gross/klein, mit Leerzeichen) = ja.
+-- (Fix 2026-11-14: vorher galt nur "j"; ein englisches "y" wurde still als nein gewertet.)
+function M.yes(v)
+  local s = (v or ""):lower():gsub("^%s+", ""):gsub("%s+$", "")
+  return s == "j" or s == "ja" or s == "y" or s == "yes" or s == "1"
+end
+
 -- Fragt die Ambisonics-Ordnung ab (1-3), merkt sich den letzten Wert
 function M.ask_order()
   if M.ALWAYS_64 then M.set("order", 7); return 7 end
