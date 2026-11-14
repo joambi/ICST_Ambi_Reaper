@@ -6,7 +6,7 @@ Nach der Installation:
 1. REAPER fuer macOS von https://www.reaper.fm/download.php laden.
 2. REAPER.app in den Ordner Programme > ICST_Ambi_Reaper legen, neben reaper.ini.
 3. 'ICST_Ambi_Reaper starten.command' im Ordner doppelklicken. Es startet REAPER.app aus dem Ordner (nur so arbeitet REAPER portabel mit diesen Einstellungen).
-4. Frage "Would you like to scan system VST/CLAP/LV2 paths?" mit No beantworten. Dann liest REAPER nur die Plug-ins aus Effects/VST3; mit Yes liest es alle systemweit installierten Plug-ins ein, was lange dauern kann.
+4. Fragt REAPER "Would you like to scan system VST/CLAP/LV2 paths?", mit No antworten. Die Frage erscheint nicht immer; REAPER kann die System-VST3-Ordner auch ohne Frage an den Plug-in-Pfad anhaengen. Nur die Plug-ins aus Effects/VST3: REAPER beenden und wieder mit 'ICST_Ambi_Reaper starten.command' oeffnen.
 5. Die Toolbar ICST_Ambi_Automation erscheint oben im Hauptfenster.
 
 Ausfuehrliche Anleitung: README.md im Ordner, Abschnitt 2.1.
@@ -18,7 +18,7 @@ After installation:
 1. Download REAPER for macOS from https://www.reaper.fm/download.php
 2. Put REAPER.app into Applications > ICST_Ambi_Reaper, next to reaper.ini.
 3. Double-click 'ICST_Ambi_Reaper starten.command' in the folder. It starts REAPER.app from the folder (only then does REAPER run portably with these settings).
-4. Answer "Would you like to scan system VST/CLAP/LV2 paths?" with No. REAPER then reads only the plug-ins in Effects/VST3; with Yes it scans every plug-in installed on the system, which can take long.
+4. If REAPER asks "Would you like to scan system VST/CLAP/LV2 paths?", answer No. The question does not always appear; REAPER may append the system VST3 folders to the plug-in path without asking. For the plug-ins in Effects/VST3 only: quit REAPER and open it again with 'ICST_Ambi_Reaper starten.command'.
 5. The toolbar ICST_Ambi_Automation appears at the top of the main window.
 
 Full guide: README_EN.md in the folder, section 2.1.
