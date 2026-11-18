@@ -15,32 +15,19 @@ Ein vorkonfigurierter [REAPER](https://www.reaper.fm)-Ordner mit Toolbar, Skript
 
 ## 2. Installation und Quick Start: macOS
 
-**Download:** [GitHub Releases](https://github.com/joambi/ICST_Ambi_Reaper/releases). Es gibt zwei Wege für macOS, beide mit demselben Inhalt:
+**Download:** [GitHub Releases](https://github.com/joambi/ICST_Ambi_Reaper/releases). Für macOS gibt es einen portablen Ordner als ZIP:
 
 | Datei | Wohin | Anleitung |
 |---|---|---|
-| `ICST_Ambi_Reaper_<Version>_macOS.pkg` | Installer, immer nach `/Applications/ICST_Ambi_Reaper` | 2.1 |
-| `ICST_Ambi_Reaper_<Version>_macOS.zip` | portabler Ordner, frei wählbarer Ort, z. B. externe SSD | 2.2 |
+| `ICST_Ambi_Reaper_<Version>_macOS.zip` | portabler Ordner, frei wählbarer Ort, z. B. externe SSD | 2.1 |
 
 `…_scripts-only.zip` enthält nur die plattformneutralen Teile (Windows, Abschnitt 3). **REAPER selbst ist aus Lizenzgründen in keinem der Pakete enthalten.**
 
 **Voraussetzungen:** macOS 12 oder neuer, Apple Silicon empfohlen (auf Intel-Macs fehlen die Erweiterungen in `UserPlugins`), REAPER 7 (getestet mit 7.85). Optional für die Motion-Map-Werkzeuge: Python 3 (`xcode-select --install` im Terminal).
 
-**Gatekeeper:** PKG und Skripte sind nicht mit einer Developer-ID signiert. Blockiert macOS eine Datei, die Meldung schliessen, dann *Systemeinstellungen › Datenschutz & Sicherheit › Dennoch öffnen* und mit dem Passwort bestätigen (ab macOS 15; bis macOS 14 genügt Ctrl-Klick › *Öffnen*).
+**Gatekeeper:** Die Skripte sind nicht mit einer Developer-ID signiert. Blockiert macOS eine Datei, die Meldung schliessen, dann *Systemeinstellungen › Datenschutz & Sicherheit › Dennoch öffnen* und mit dem Passwort bestätigen (ab macOS 15; bis macOS 14 genügt Ctrl-Klick › *Öffnen*).
 
-### 2.1 Installer (PKG), Schritt für Schritt
-
-1. **PKG laden.** `ICST_Ambi_Reaper_<Version>_macOS.pkg` aus den Releases herunterladen.
-2. **PKG öffnen.** Doppelklick. Blockiert macOS das Paket: Weg über *Dennoch öffnen* (siehe Gatekeeper).
-3. **Installer durchlaufen.** *Fortfahren*, Lizenz *Akzeptieren*, *Installieren*, mit dem Passwort bestätigen. Der Installer legt `/Applications/ICST_Ambi_Reaper` an, setzt den Plug-in-Pfad in `reaper.ini` und übergibt den Ordner dem angemeldeten Benutzer. Plug-ins aus dem PKG tragen kein Quarantäne-Flag; `run-me-before-install.command` ist nicht nötig.
-4. **REAPER laden.** Von [reaper.fm](https://www.reaper.fm/download.php) die macOS-Version laden und das Disk-Image öffnen.
-5. **REAPER.app in den Ordner legen.** Im Finder *Programme › ICST_Ambi_Reaper* öffnen und `REAPER.app` aus dem Disk-Image dorthin ziehen, neben `reaper.ini`. Nur so arbeitet REAPER portabel mit diesem Ordner. Eine vorhandene `/Applications/REAPER.app` bleibt unberührt. Die Datei `REAPER.app FEHLT - bitte lesen.txt` kann danach gelöscht werden.
-6. **REAPER starten.** `ICST_Ambi_Reaper starten.command` im Ordner doppelklicken. Das Skript setzt den Plug-in-Pfad und startet `REAPER.app` aus dem Ordner.
-7. **Plug-in-Pfad prüfen.** REAPER (ab 7.50) kann beim ersten Start fragen: *New portable install detected … Would you like to scan system VST/CLAP/LV2 paths?* Erscheint die Frage, mit **No** antworten. Die Frage erscheint nicht in jedem Fall: Im Test mit REAPER 7.85 nach einer PKG-Installation kam sie nicht, und REAPER hängte `/Library/Audio/Plug-Ins/VST3` und `~/Library/Audio/Plug-Ins/VST3` trotzdem an den Plug-in-Pfad an. Dann erscheinen auch systemweit installierte Plug-ins in REAPER, und REAPER beginnt, sie zu scannen. Dieser Scan lässt sich im Fortschrittsfenster abbrechen; bei vielen installierten Plug-ins spart das Zeit. Wer nur die Plug-ins aus `Effects/VST3` will: Scan abbrechen oder abwarten, REAPER beenden (Cmd-Q) und wieder mit `ICST_Ambi_Reaper starten.command` öffnen; das Skript setzt den Pfad bei jedem Start auf `Effects/VST3` zurück. Kontrolle: *Options › Preferences › Plug-ins › VST*.
-8. **Toolbar prüfen.** Die Toolbar *ICST_Ambi_Automation* erscheint beim ersten Start fest oben im Hauptfenster. Andere Position: Rechtsklick auf eine leere Stelle der Toolbar › *Position toolbar*. Wurde sie geschlossen: *View › Toolbars › Floating toolbar 1*.
-9. **Kontrolle.** *Options › Show REAPER resource path in explorer/finder* muss den Ordner `ICST_Ambi_Reaper` öffnen. Weiter mit dem **Ersten Durchlauf** unten.
-
-### 2.2 Bundle-ZIP (portabel), Schritt für Schritt
+### 2.1 Bundle-ZIP (portabel), Schritt für Schritt
 
 1. **ZIP laden.** `ICST_Ambi_Reaper_<Version>_macOS.zip` aus den Releases herunterladen.
 2. **Entpacken.** Doppelklick auf das ZIP. Es entsteht der Ordner `ICST_Ambi_Reaper`.
@@ -49,15 +36,15 @@ Ein vorkonfigurierter [REAPER](https://www.reaper.fm)-Ordner mit Toolbar, Skript
 5. **REAPER.app in den Ordner legen.** `REAPER.app` in den Ordner `ICST_Ambi_Reaper` ziehen, neben `reaper.ini`.
 6. **Einrichtungsskript.** `run-me-before-install.command` doppelklicken. Beim ersten Mal blockiert macOS das Skript: Weg über *Dennoch öffnen* (siehe Gatekeeper). Das Skript entfernt das Quarantäne-Flag von Plug-ins und Skripten und setzt den Plug-in-Pfad in `reaper.ini` auf den aktuellen Ort.
 7. **REAPER starten.** Ab jetzt immer mit `ICST_Ambi_Reaper starten.command`. Es setzt den Plug-in-Pfad bei jedem Start auf den aktuellen Ort (auch auf externen Laufwerken mit anderem Namen) und startet `REAPER.app` aus dem Ordner. Warnt macOS beim ersten Start von REAPER: derselbe Weg über *Dennoch öffnen*.
-8. **Plug-in-Pfad prüfen.** Wie in 2.1, Schritt 7.
-9. **Toolbar prüfen.** Wie in 2.1, Schritt 8.
+8. **Plug-in-Pfad prüfen.** REAPER (ab 7.50) kann beim ersten Start fragen: *New portable install detected … Would you like to scan system VST/CLAP/LV2 paths?* Erscheint die Frage, mit **No** antworten. Die Frage erscheint nicht in jedem Fall: REAPER 7.85 hängte `/Library/Audio/Plug-Ins/VST3` und `~/Library/Audio/Plug-Ins/VST3` trotzdem an den Plug-in-Pfad an. Dann erscheinen auch systemweit installierte Plug-ins in REAPER, und REAPER beginnt, sie zu scannen. Dieser Scan lässt sich im Fortschrittsfenster abbrechen; bei vielen installierten Plug-ins spart das Zeit. Wer nur die Plug-ins aus `Effects/VST3` will: Scan abbrechen oder abwarten, REAPER beenden (Cmd-Q) und wieder mit `ICST_Ambi_Reaper starten.command` öffnen; das Skript setzt den Pfad bei jedem Start auf `Effects/VST3` zurück. Kontrolle: *Options › Preferences › Plug-ins › VST*.
+9. **Toolbar prüfen.** Die Toolbar *ICST_Ambi_Automation* erscheint beim ersten Start fest oben im Hauptfenster. Andere Position: Rechtsklick auf eine leere Stelle der Toolbar › *Position toolbar*. Wurde sie geschlossen: *View › Toolbars › Floating toolbar 1*.
 10. **Kontrolle.** *Options › Show REAPER resource path in explorer/finder* muss den Ordner `ICST_Ambi_Reaper` öffnen. Fehlen Plug-ins: *Options › Preferences › Plug-ins › VST*, der Pfad endet auf `Effects/VST3`, **Re-scan** (bei Bedarf *Clear cache and re-scan*).
 
 **Nicht doppelt installieren:** Sind dieselben Plug-ins zusätzlich über die Installer von ICST oder IEM in `/Library/Audio/Plug-Ins/VST3` installiert, lädt REAPER unter Umständen die alte Kopie von dort. Entweder nur den Ordner benutzen oder die systemweit installierten Plug-ins entfernen.
 
 ### Erster Durchlauf (10 Minuten)
 
-**Variante A: Quick Start (ein Klick).** Getestet mit v1.1.1 und REAPER 7.85 nach einer frischen PKG-Installation.
+**Variante A: Quick Start (ein Klick).** Getestet mit v1.1.1 und REAPER 7.85.
 1. Neues, leeres Projekt (*File › New project*).
 2. In der Toolbar *ICST_Ambi_Automation* ganz links **Quick Start** (Blitz, Button 1) klicken.
 3. Der Dialog *ICST Quick-Start* fragt fünf Werte ab. Vorgabe: `4, n, n, j, j` = 4 Mono-Quellen, keine HOA_FX-Spur, kein HOA_Reverb, Decoder ja, Binaural ja. Mit **OK** bestätigen. Der Dialog merkt sich die zuletzt gewählten Werte.
