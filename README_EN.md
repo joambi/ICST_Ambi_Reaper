@@ -1,6 +1,6 @@
 # ICST_Ambi_Reaper (installation and quick start)
 
-Portable REAPER resource folder for ICST Ambisonics and the Animator Choreographer (7 November 2026).
+Portable REAPER resource folder for ICST Ambisonics and the Animator Choreographer (18 November 2026).
 Deutsche Fassung mit Toolbar-Tabelle: [README.md](README.md)
 
 ## 1. What is this?

@@ -1,6 +1,6 @@
 # ICST_Ambi_Reaper
 
-Portabler REAPER-Resource-Ordner für ICST Ambisonics und den Animator Choreographer (Stand 7. November 2026).
+Portabler REAPER-Resource-Ordner für ICST Ambisonics und den Animator Choreographer (Stand 18. November 2026).
 English version: [README_EN.md](README_EN.md)
 
 ## 1. Was ist das?
