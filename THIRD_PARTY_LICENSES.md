@@ -1,6 +1,6 @@
 # Drittanbieter-Komponenten / Third-party components
 
-Die ICST-eigenen Inhalte dieses Repositorys stehen unter GPL-3.0-or-later (`LICENSE`). Die folgenden Komponenten Dritter sind **nicht im Git-Repo**, sondern nur in den Release-Downloads (`…_macOS.zip`, `…_macOS.pkg`) enthalten bzw. werden auf Windows per Installer bezogen.
+Die ICST-eigenen Inhalte dieses Repositorys stehen unter GPL-3.0-or-later (`LICENSE`). Die folgenden Komponenten Dritter sind **nicht im Git-Repo**, sondern nur in den Release-Downloads (`…_macOS.zip`) enthalten bzw. werden auf Windows per Installer bezogen.
 
 **Nicht enthalten:** REAPER (Cockos Inc., proprietär — <https://www.reaper.fm/download.php>; 60 Tage frei evaluierbar, danach Lizenz nötig), die REAPER-Standardthemes, -effekte und -icons (legt REAPER beim ersten Start selbst an), dearVR AMBI MICRO (Dear Reality, kommerziell).
 

@@ -1,12 +1,10 @@
 #!/bin/bash
 # Erzeugt die Release-Dateien fuer GitHub Releases (auf dem Mac ausfuehren):
 #   ICST_Ambi_Reaper_<ver>_macOS.zip          portabler Ordner (ohne REAPER.app, ohne persoenliche Daten)
-#   ICST_Ambi_Reaper_<ver>_macOS.pkg          Installer nach /Applications/ICST_Ambi_Reaper
 #   ICST_Ambi_Reaper_<ver>_scripts-only.zip   nur versionierte, plattformneutrale Teile (Windows / bestehende Installation)
 # Aufruf:  build/make_release.sh [version] [zielordner]
 #   version     Standard: git-Tag (v1.2.3 -> 1.2.3), sonst Datum
 #   zielordner  Standard: ../ICST_Ambi_Reaper_releases
-# Signieren: PKG_SIGN_IDENTITY="Developer ID Installer: ..." build/make_release.sh
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 NAME="ICST_Ambi_Reaper"
@@ -34,36 +32,6 @@ du -sh "$STAGE" | awk '{print "   Groesse:", $1}'
 echo "== ZIP"
 ZIP="$OUT/${NAME}_${VER}_macOS.zip"; rm -f "$ZIP"
 (cd "$TMP" && zip -r -q -y "$ZIP" "$NAME")
-
-if command -v pkgbuild >/dev/null 2>&1; then
-  echo "== PKG"
-  PKGDIR="$TMP/pkg"; mkdir -p "$PKGDIR/res"
-  chmod +x "$ROOT/build/pkg/scripts/"*
-  # Mitgelieferte .app-Bundles (Animator) nicht relozierbar: sonst "aktualisiert" der Installer
-  # eine gleichnamige App an anderem Ort, statt sie in den Ordner zu legen.
-  PLIST="$PKGDIR/component.plist"
-  pkgbuild --quiet --analyze --root "$STAGE" "$PLIST"
-  i=0
-  while /usr/libexec/PlistBuddy -c "Print :$i" "$PLIST" >/dev/null 2>&1; do
-    /usr/libexec/PlistBuddy -c "Set :$i:BundleIsRelocatable false" "$PLIST" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :$i:BundleIsRelocatable bool false" "$PLIST"
-    i=$((i+1))
-  done
-  echo "   $i Bundle(s) nicht relozierbar"
-  pkgbuild --quiet --root "$STAGE" --component-plist "$PLIST" --identifier ch.zhdk.icst.ambi-reaper --version "$VER" \
-    --install-location "/Applications/$NAME" --scripts "$ROOT/build/pkg/scripts" --ownership recommended \
-    "$PKGDIR/${NAME}-component.pkg"
-  sed "s/@VERSION@/$VER/g" "$ROOT/build/pkg/Distribution.xml" > "$PKGDIR/Distribution.xml"
-  cp "$ROOT/LICENSE" "$PKGDIR/res/license.txt"
-  cp "$ROOT/build/pkg/welcome.txt" "$PKGDIR/res/welcome.txt"
-  PKG="$OUT/${NAME}_${VER}_macOS.pkg"; rm -f "$PKG"
-  SIGN=()
-  [ -n "${PKG_SIGN_IDENTITY:-}" ] && SIGN=(--sign "$PKG_SIGN_IDENTITY")
-  productbuild --quiet --distribution "$PKGDIR/Distribution.xml" --resources "$PKGDIR/res" \
-    --package-path "$PKGDIR" ${SIGN[@]+"${SIGN[@]}"} "$PKG"
-  [ -n "${PKG_SIGN_IDENTITY:-}" ] || echo "   (unsigniert — Empfaenger: Systemeinstellungen > Datenschutz & Sicherheit > Dennoch oeffnen; bis macOS 14 Ctrl-Klick > Oeffnen)"
-else
-  echo "== PKG uebersprungen (pkgbuild nicht gefunden — nur auf macOS)"
-fi
 
 if git -C "$ROOT" rev-parse --git-dir >/dev/null 2>&1; then
   echo "== scripts-only ZIP (git archive HEAD)"
